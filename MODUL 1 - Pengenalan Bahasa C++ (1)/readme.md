@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul Tipe Data</h1>
+# <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
 <p align="center">Arvinanto Bahtiar</p>
 
 ## Dasar Teori
