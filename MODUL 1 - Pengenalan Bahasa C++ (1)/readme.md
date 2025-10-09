@@ -9,6 +9,7 @@ Modul ini membahas dasar-dasar pemrograman C++ dengan menggunakan Code::Blocks s
 
 ### 1. [Code Blocks Ide & Pengenalan Bahasa C++(Bagian Pertama]
 
+```C++
 #include <iostream>
 
 using namespace std;
@@ -26,13 +27,14 @@ int main () {
     
     return 0;
 }
-
+```
 Kode di atas berfungsi untuk menampilkan teks “Baris ke-” sesuai jumlah yang dimasukkan pengguna. Nilai input disimpan pada variabel `jum`, lalu dikirim ke fungsi `tulis()` yang menggunakan perulangan `for` untuk mencetak baris secara berurutan. Namun, ada kesalahan pada kondisi perulangan (`1 < x` seharusnya `i < x`), sehingga perlu diperbaiki agar program dapat berjalan dengan benar.
 
 ## Unguided 
 
 ### 1. [Soal]
 
+```C++
 #include <iostream>
 
 using namespace std;
@@ -55,6 +57,7 @@ int main() {
 
     return 0;
 }
+```
 #### Output:
 <img width="619" height="274" alt="Image" src="https://github.com/user-attachments/assets/f66d4767-7d4f-4bf5-bb40-44d833ffd3bb" />
 
@@ -65,7 +68,7 @@ Kode di atas berfungsi untuk menghitung penjumlahan, pengurangan, perkalian, dan
 <img width="897" height="694" alt="Image" src="https://github.com/user-attachments/assets/f07146c9-4157-4686-9264-b1c855fb45d2" />
 
 ### 2. [Soal]
-
+```C++
 #include <iostream>
 using namespace std;
 
@@ -99,7 +102,7 @@ int main() {
     cout << endl;
     return 0;
 }
-
+```
 #### Output:
 <img width="636" height="492" alt="Image" src="https://github.com/user-attachments/assets/49a287ca-81fe-401b-bfc3-516c58894053" />
 
@@ -109,7 +112,7 @@ Kode di atas berfungsi mengubah angka 0–100 menjadi bentuk tulisan bahasa Indo
 <img width="1381" height="985" alt="Image" src="https://github.com/user-attachments/assets/0dec2ecb-e37f-4b9d-a188-df118dabb74d" />
 
 ### 3. [Soal]
-
+```C++
 #include <iostream>
 using namespace std;
 
@@ -138,6 +141,7 @@ int main() {
 
     return 0;
 }
+```
 #### Output:
 <img width="647" height="256" alt="Image" src="https://github.com/user-attachments/assets/7f9d038e-2fc9-4292-a0e0-25dc1ee6f0e2" />
 
