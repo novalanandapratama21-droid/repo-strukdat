@@ -33,7 +33,7 @@ int main() {
 
     cout << "Masukan Angka Pertama: ";
     cin >> a;
-    cout << "Masukan Angka K: ";
+    cout << "Masukan Angka Kedua: ";
     cin >> b;
     cout << "Hasil Penjumlahan: " << a + b << endl;
     cout << "Hasil Pengurangan: " << a - b << endl;
@@ -47,9 +47,9 @@ int main() {
     return 0;
 }
 #### Output:
-![240302_00h00m06s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/6d1727a8-fb77-4ecf-81ff-5de9386686b7)
+<img width="619" height="274" alt="Image" src="https://github.com/user-attachments/assets/f66d4767-7d4f-4bf5-bb40-44d833ffd3bb" />
 
-Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+Kode di atas digunakan untuk memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan yang di input pengguna
 
 #### Full code Screenshot:
 ![240309_10h21m35s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/41e9641c-ad4e-4e50-9ca4-a0215e336b04)
