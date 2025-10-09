@@ -24,15 +24,110 @@ Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktika
 
 ### 1. [Soal]
 
-```C++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    float a, b;
+
+    cout << "Masukan Angka Pertama: ";
+    cin >> a;
+    cout << "Masukan Angka K: ";
+    cin >> b;
+    cout << "Hasil Penjumlahan: " << a + b << endl;
+    cout << "Hasil Pengurangan: " << a - b << endl;
+    cout << "Hasil Perkalian: " << a * b << endl;
+
+    if (b != 0)
+        cout << "Hasil pembagian: " << a / b << endl;
+    else
+        cout << "Pembagian tidak dapat dilakukan (b = 0)" << endl;
+
+    return 0;
+}
+#### Output:
+![240302_00h00m06s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/6d1727a8-fb77-4ecf-81ff-5de9386686b7)
+
+Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
+#### Full code Screenshot:
+![240309_10h21m35s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/41e9641c-ad4e-4e50-9ca4-a0215e336b04)
+
+### 2. [Soal]
+
 #include <iostream>
 using namespace std;
 
 int main() {
-    cout << "ini adalah file code unguided praktikan" << endl;
+    int angka;
+    cout << "Masukkan bilangan (0-100): ";
+    cin >> angka;
+
+    string nilai[] = {"nol", "satu", "dua", "tiga", "empat", "lima",
+                     "enam", "tujuh", "delapan", "sembilan"};
+
+    if (angka < 10)
+        cout << angka << " : " << nilai[angka];
+    else if (angka == 10)
+        cout << angka << " : sepuluh";
+    else if (angka == 11)
+        cout << angka << " : sebelas";
+    else if (angka < 20)
+        cout << angka << " : " << nilai[angka - 10] << " belas";
+    else if (angka < 100) {
+        int puluhan = angka / 10;
+        int sisa = angka % 10;
+        cout << angka << " : " << nilai[puluhan] << " puluh";
+        if (sisa != 0)
+            cout << " " << nilai[sisa];
+    } else if (angka == 100)
+        cout << angka << " : seratus";
+    else
+        cout << "Bilangan di luar jangkauan (0-100)";
+
+    cout << endl;
     return 0;
 }
-```
+
+#### Output:
+![240302_00h00m06s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/6d1727a8-fb77-4ecf-81ff-5de9386686b7)
+
+Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
+#### Full code Screenshot:
+![240309_10h21m35s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/41e9641c-ad4e-4e50-9ca4-a0215e336b04)
+
+### 3. [Soal]
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Input: ";
+    cin >> n;
+    cout << "Output:\n";
+
+    for (int i = n; i >= 1; i--) {
+    
+        for (int s = 0; s < (n - i) * 2; s++)
+            cout << " ";
+
+
+        for (int j = i; j >= 1; j--)
+            cout << j << " ";
+
+        cout << "* ";
+
+        for (int j = 1; j <= i; j++)
+            cout << j << " ";
+
+        cout << endl;
+    }
+
+    return 0;
+}
 #### Output:
 ![240302_00h00m06s_screenshot](https://github.com/suxeno/Struktur-Data-Assignment/assets/111122086/6d1727a8-fb77-4ecf-81ff-5de9386686b7)
 
