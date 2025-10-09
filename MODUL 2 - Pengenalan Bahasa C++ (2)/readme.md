@@ -105,7 +105,7 @@ int main(){
 }
 ```
 #### Output:
-<img width="636" height="492" alt="Image" src="https://github.com/user-attachments/assets/49a287ca-81fe-401b-bfc3-516c58894053" />
+<img width="644" height="181" alt="Image" src="https://github.com/user-attachments/assets/c17cb710-1783-4a6e-8998-cc5c2e5c5634" />
 
 Kode di atas berfungsi mengubah angka 0–100 menjadi bentuk tulisan bahasa Indonesia. Program meminta input angka, lalu menggunakan `if-else` untuk menentukan hasilnya. Angka di bawah 10 diambil dari array `nilai`, sedangkan angka 10–19 dan 20–99 diproses dengan aturan “belas” dan “puluh”. Jika angka 100, ditampilkan “seratus”, dan jika di luar rentang, muncul pesan peringatan.
 
@@ -161,6 +161,7 @@ Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungs
 [1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
 [2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
 [3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+
 
 
 
