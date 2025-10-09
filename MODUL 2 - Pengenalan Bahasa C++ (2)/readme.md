@@ -107,40 +107,78 @@ int main(){
 #### Output:
 <img width="644" height="181" alt="Image" src="https://github.com/user-attachments/assets/c17cb710-1783-4a6e-8998-cc5c2e5c5634" />
 
-Kode di atas berfungsi mengubah angka 0–100 menjadi bentuk tulisan bahasa Indonesia. Program meminta input angka, lalu menggunakan `if-else` untuk menentukan hasilnya. Angka di bawah 10 diambil dari array `nilai`, sedangkan angka 10–19 dan 20–99 diproses dengan aturan “belas” dan “puluh”. Jika angka 100, ditampilkan “seratus”, dan jika di luar rentang, muncul pesan peringatan.
+Kode di atas berfungsi untuk menukar posisi tiga bilangan yang dimasukkan oleh pengguna. Program meminta input tiga angka melalui `cin`, lalu menampilkan nilai sebelum dan sesudah pertukaran menggunakan `cout`. Proses penukaran dilakukan dengan memanfaatkan variabel sementara `t`, sehingga nilai `a`, `b`, dan `c` berpindah posisi secara berurutan.
 
 #### Full code Screenshot:
-<img width="1381" height="985" alt="Image" src="https://github.com/user-attachments/assets/0dec2ecb-e37f-4b9d-a188-df118dabb74d" />
+<img width="695" height="386" alt="Image" src="https://github.com/user-attachments/assets/c58a5552-8ba1-4182-b4ab-daa0afe40792" />
 
 ### 3. [Soal]
 ```C++
 #include <iostream>
 using namespace std;
 
+int cariMin(int a[], int n);
+int cariMaks(int a[], int n);
+void hitungRata(int a[], int n);
+
 int main() {
-    int n;
-    cout << "Input: ";
-    cin >> n;
-    cout << "Output:\n";
+    int arr[10] = {11,8,5,7,12,26,3,54,33,55};
+    int pilih, n = 10;
 
-    for (int i = n; i >= 1; i--) {
-    
-        for (int s = 0; s < (n - i) * 2; s++)
-            cout << " ";
+    do {
+        cout << "\n--- Menu Program Array ---\n";
+        cout << "1. Tampilkan isi array\n";
+        cout << "2. Cari nilai maksimum\n";
+        cout << "3. Cari nilai minimum\n";
+        cout << "4. Hitung nilai rata-rata\n";
+        cout << "5. Keluar\n";
+        cout << "Pilih: ";
+        cin >> pilih;
 
-
-        for (int j = i; j >= 1; j--)
-            cout << j << " ";
-
-        cout << "* ";
-
-        for (int j = 1; j <= i; j++)
-            cout << j << " ";
-
-        cout << endl;
-    }
+        switch(pilih) {
+            case 1:
+                for(int i=0;i<n;i++)
+                    cout << arr[i] << " ";
+                cout << endl;
+                break;
+            case 2:
+                cout << "Nilai maksimum: " << cariMaks(arr,n) << endl;
+                break;
+            case 3:
+                cout << "Nilai minimum: " << cariMin(arr,n) << endl;
+                break;
+            case 4:
+                hitungRata(arr,n);
+                break;
+            case 5:
+                cout << "Terima kasih!\n";
+                break;
+            default:
+                cout << "Pilihan tidak valid!\n";
+        }
+    } while(pilih != 5);
 
     return 0;
+}
+
+int cariMin(int a[], int n){
+    int min = a[0];
+    for(int i=1;i<n;i++)
+        if(a[i]<min) min = a[i];
+    return min;
+}
+
+int cariMaks(int a[], int n){
+    int maks = a[0];
+    for(int i=1;i<n;i++)
+        if(a[i]>maks) maks = a[i];
+    return maks;
+}
+
+void hitungRata(int a[], int n){
+    int total=0;
+    for(int i=0;i<n;i++) total += a[i];
+    cout << "Nilai rata-rata: " << (float)total/n << endl;
 }
 ```
 #### Output:
@@ -161,6 +199,7 @@ Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungs
 [1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
 [2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
 [3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+
 
 
 
