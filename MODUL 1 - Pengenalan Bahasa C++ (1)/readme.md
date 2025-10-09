@@ -1,9 +1,9 @@
  # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
-<p align="center">Arvinanto Bahtiar</p>
+<p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
 
-Berikan penjelasan teori terkait materi modul ini dengan bahasa anda sendiri serta susunan yang terstruktur per topiknya.
+Modul ini membahas dasar-dasar pemrograman C++ dengan menggunakan Code::Blocks sebagai IDE. Code::Blocks digunakan untuk menulis, menjalankan, dan mengecek program agar lebih mudah dan teratur. Di dalam modul dijelaskan struktur dasar program C++, yang diawali dengan `#include <iostream>` dan fungsi utama `int main()`. Perintah `cout` digunakan untuk menampilkan output ke layar, sedangkan `cin` untuk menerima input dari pengguna. Modul ini juga menjelaskan tipe data seperti `int`, `float`, dan `string`, serta cara menggunakan variabel untuk menyimpan nilai. Selain itu, dibahas juga penggunaan operator aritmatika dan logika, struktur percabangan `if-else`, serta perulangan seperti `for` dan `while`. Secara keseluruhan, modul ini membantu memahami konsep dasar C++ yang penting untuk membuat program sederhana.
 
 ## Guided 
 
@@ -97,7 +97,7 @@ int main() {
 Kode di atas berfungsi mengubah angka 0–100 menjadi bentuk tulisan bahasa Indonesia. Program meminta input angka, lalu menggunakan `if-else` untuk menentukan hasilnya. Angka di bawah 10 diambil dari array `nilai`, sedangkan angka 10–19 dan 20–99 diproses dengan aturan “belas” dan “puluh”. Jika angka 100, ditampilkan “seratus”, dan jika di luar rentang, muncul pesan peringatan.
 
 #### Full code Screenshot:
-<img width="1401" height="1035" alt="Screenshot 2025-10-09 142017" src="https://github.com/user-attachments/assets/dc7e29a2-fecc-472f-b1dc-b7e3dfde417e" />
+<img width="1381" height="985" alt="Image" src="https://github.com/user-attachments/assets/0dec2ecb-e37f-4b9d-a188-df118dabb74d" />
 
 ### 3. [Soal]
 
