@@ -53,7 +53,7 @@ Kode di atas berfungsi untuk menghitung penjumlahan, pengurangan, perkalian, dan
 
 
 #### Full code Screenshot:
-<img width="1403" height="1079" alt="Image" src="https://github.com/user-attachments/assets/f4680476-3563-4d3c-ba7c-30357c402b15" />
+<img width="897" height="694" alt="Image" src="https://github.com/user-attachments/assets/f07146c9-4157-4686-9264-b1c855fb45d2" />
 
 ### 2. [Soal]
 
