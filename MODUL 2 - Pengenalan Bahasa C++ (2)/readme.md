@@ -10,24 +10,48 @@ Modul 2: Pengenalan Bahasa C++ (Bagian Kedua) membahas dasar logika dalam pemrog
 
 ```C++
 #include <iostream>
-
 using namespace std;
 
-void tulis (int x){
-    for (int i = 0; 1 < x; i++ ){
-        cout << "Baris ke -: " << i+1 << endl;
+int main() {
+    // --- Array 1 Dimensi ---
+    int arr[5] = {10, 20, 30, 40, 50};
+    cout << "Array 1 Dimensi:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Element ke-" << i << ": " << arr[i] << endl;
     }
-}
-int main () {
-    int jum;
-    cout << "Jumlah baris kata: ";
-    cin >> jum;
-    tulis(jum);
-    
+    cout << endl;
+
+    // --- Array 2 Dimensi ---
+    int arr2D[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+    };
+    cout << "Array 2 Dimensi:" << endl;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << "arr2D[" << i << "][" << j << "]: " << arr2D[i][j]
+            << " ";
+        }
+        cout << endl;
+    }
+    // --- Array Multi Dimensi (3D) ---
+    int arr3D[2][2][3] = {
+        { {1, 2, 3}, {4, 5, 6} },
+        { {7, 8, 9}, {10, 11, 12} },
+    };
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 3; k++) {
+                cout << "arr3D[" << i << "][" << j << "]["
+                << k << "]: " << arr3D[i][j][k] << endl;
+            }
+        }
+    }
+
     return 0;
 }
 ```
-Kode di atas berfungsi untuk menampilkan teks “Baris ke-” sesuai jumlah yang dimasukkan pengguna. Nilai input disimpan pada variabel `jum`, lalu dikirim ke fungsi `tulis()` yang menggunakan perulangan `for` untuk mencetak baris secara berurutan. Namun, ada kesalahan pada kondisi perulangan (`1 < x` seharusnya `i < x`), sehingga perlu diperbaiki agar program dapat berjalan dengan benar.
+Kode di atas berfungsi untuk menampilkan contoh array satu dimensi, dua dimensi, dan tiga dimensi. Program menggunakan perulangan for untuk menampilkan setiap elemen dari masing-masing array, sehingga pengguna dapat melihat cara mengakses dan menampilkan data pada array dengan berbagai dimensi.
 
 ## Unguided 
 
@@ -184,21 +208,20 @@ void hitungRata(int a[], int n){
 #### Output:
 <img width="599" height="927" alt="Image" src="https://github.com/user-attachments/assets/3a1be501-56d9-45de-ac15-4a9260002600" />
 
-Kode di atas digunakan untuk menampilkan pola angka berbentuk segitiga terbalik dengan simbol bintang (*) di tengahnya. Program meminta pengguna memasukkan nilai `n`, lalu menggunakan dua perulangan `for` bersarang untuk mencetak spasi dan angka secara teratur. Angka dicetak menurun di sisi kiri dan menaik di sisi kanan, sedangkan tanda bintang ditempatkan di tengah sebagai pemisah. Proses ini diulang hingga baris terakhir, sehingga terbentuk pola simetris dari angka dan bintang.
+Kode di atas berfungsi untuk melakukan berbagai operasi pada data array berisi sepuluh angka. Program menampilkan menu interaktif yang memungkinkan pengguna memilih beberapa opsi, yaitu menampilkan isi array, mencari nilai maksimum, mencari nilai minimum, dan menghitung nilai rata-rata. Fungsi `cariMaks()` digunakan untuk menentukan nilai terbesar dari elemen array, sedangkan `cariMin()` untuk mencari nilai terkecil. Sementara itu, fungsi `hitungRata()` menjumlahkan semua elemen array dan membaginya dengan jumlah data untuk mendapatkan rata-ratanya. Program akan terus berjalan menampilkan menu sampai pengguna memilih opsi keluar.
 
 
 #### Full code Screenshot:
-<img width="712" height="885" alt="Screenshot 2025-10-09 142944" src="https://github.com/user-attachments/assets/5a832f44-1969-47b1-8ca7-31780fea1dbf" />
-
+<img width="476" height="940" alt="Image" src="https://github.com/user-attachments/assets/78039e91-904a-4c18-8aad-069adf6f16ad" />
 
 ## Kesimpulan
-Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungsi dan logika yang berbeda, tapi sama-sama menggunakan dasar pemrograman C++. Program pertama digunakan untuk menghitung operasi aritmatika sederhana seperti penjumlahan, pengurangan, perkalian, dan pembagian. Program kedua menunjukkan penerapan struktur *if-else* untuk mengubah angka menjadi bentuk tulisan dalam bahasa Indonesia. Sedangkan program ketiga menerapkan konsep *looping bersarang* untuk menampilkan pola angka yang simetris dengan tanda bintang di tengahnya. Dari ketiga program tersebut bisa disimpulkan bahwa pemahaman terhadap input/output, percabangan, dan perulangan sangat penting karena menjadi dasar dalam menyusun logika program yang lebih kompleks.
-
+Ketiga program yang telah dibuat memiliki tujuan yang berbeda namun sama-sama melatih pemahaman dasar pemrograman C++. Program pertama digunakan untuk melakukan operasi aritmatika pada matriks, yaitu penjumlahan, pengurangan, dan perkalian. Program kedua menunjukkan cara menukar posisi tiga bilangan menggunakan variabel sementara. Sedangkan program ketiga menampilkan penerapan array dengan fungsi tambahan untuk mencari nilai maksimum, minimum, dan rata-rata melalui menu interaktif. Secara keseluruhan, ketiga program ini membantu memahami penggunaan array, perulangan, fungsi, serta logika dasar dalam penyusunan program C++.
 
 ## Referensi
-[1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
-[2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
-[3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+[1] GeeksforGeeks. (n.d.). Different Operations on Matrices in C++. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/different-operation-matrices/
+[2] GeeksforGeeks. (n.d.). Maximum and Minimum in an Array in C++. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/dsa/maximum-and-minimum-in-an-array/
+[3] GeeksforGeeks. (n.d.). Menu Driven Program in C++ to Perform Various Basic Operations on Array. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/dsa/menu-driven-program-in-cpp-to-perform-various-basic-operations-on-array/
+
 
 
 
