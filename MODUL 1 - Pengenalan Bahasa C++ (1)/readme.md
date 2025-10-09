@@ -157,6 +157,7 @@ Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungs
 
 
 ## Referensi
-[1] Modul 1
-[2] Tutorialspoint
-[3] GeeksforGeeks
+[1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
+[2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
+[3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+
