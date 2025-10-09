@@ -82,7 +82,7 @@ int main() {
 
 ```
 #### Output:
-<img width="619" height="274" alt="Image" src="https://github.com/user-attachments/assets/f66d4767-7d4f-4bf5-bb40-44d833ffd3bb" />
+<img width="643" height="943" alt="Image" src="https://github.com/user-attachments/assets/cae7fee4-c6cf-4e12-a597-f997107a2244" />
 
 Kode di atas berfungsi untuk menghitung penjumlahan, pengurangan, perkalian, dan pembagian dari dua angka yang dimasukkan pengguna. Program meminta input dua angka melalui `cin`, lalu menampilkan hasil operasi menggunakan `cout`. Jika angka kedua bernilai nol, program menampilkan pesan bahwa pembagian tidak dapat dilakukan.
 
@@ -183,4 +183,5 @@ Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungs
 [1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
 [2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
 [3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+
 
