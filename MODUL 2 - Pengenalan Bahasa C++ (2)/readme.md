@@ -84,46 +84,24 @@ int main() {
 #### Output:
 <img width="643" height="943" alt="Image" src="https://github.com/user-attachments/assets/cae7fee4-c6cf-4e12-a597-f997107a2244" />
 
-Kode di atas berfungsi untuk menghitung penjumlahan, pengurangan, perkalian, dan pembagian dari dua angka yang dimasukkan pengguna. Program meminta input dua angka melalui `cin`, lalu menampilkan hasil operasi menggunakan `cout`. Jika angka kedua bernilai nol, program menampilkan pesan bahwa pembagian tidak dapat dilakukan.
+Kode di atas berfungsi untuk melakukan operasi penjumlahan, pengurangan, dan perkalian antara dua matriks berukuran 3x3. Program meminta pengguna untuk memasukkan nilai elemen-elemen matriks A dan B menggunakan `cin`, lalu hasilnya disimpan ke dalam matriks C. Setelah itu, program menampilkan hasil penjumlahan, pengurangan, dan perkalian kedua matriks menggunakan `cout` dengan perulangan bersarang untuk mengakses setiap elemen matriks satu per satu.
 
 
 #### Full code Screenshot:
-<img width="897" height="694" alt="Image" src="https://github.com/user-attachments/assets/f07146c9-4157-4686-9264-b1c855fb45d2" />
+<img width="1394" height="996" alt="Image" src="https://github.com/user-attachments/assets/52fb48bc-3dec-4091-9901-0b9a53896ffd" />
 
 ### 2. [Soal]
 ```C++
 #include <iostream>
 using namespace std;
 
-int main() {
-    int angka;
-    cout << "Masukkan bilangan (0-100): ";
-    cin >> angka;
-
-    string nilai[] = {"nol", "satu", "dua", "tiga", "empat", "lima",
-                     "enam", "tujuh", "delapan", "sembilan"};
-
-    if (angka < 10)
-        cout << angka << " : " << nilai[angka];
-    else if (angka == 10)
-        cout << angka << " : sepuluh";
-    else if (angka == 11)
-        cout << angka << " : sebelas";
-    else if (angka < 20)
-        cout << angka << " : " << nilai[angka - 10] << " belas";
-    else if (angka < 100) {
-        int puluhan = angka / 10;
-        int sisa = angka % 10;
-        cout << angka << " : " << nilai[puluhan] << " puluh";
-        if (sisa != 0)
-            cout << " " << nilai[sisa];
-    } else if (angka == 100)
-        cout << angka << " : seratus";
-    else
-        cout << "Bilangan di luar jangkauan (0-100)";
-
-    cout << endl;
-    return 0;
+int main(){
+    int a, b, c, t;
+    cout << "Masukkan tiga bilangan: ";
+    cin >> a >> b >> c;
+    cout<<"Sebelum: "<<a<<" "<<b<<" "<<c<<endl;
+    t=a; a=b; b=c; c=t;
+    cout<<"Sesudah: "<<a<<" "<<b<<" "<<c<<endl;
 }
 ```
 #### Output:
@@ -183,5 +161,6 @@ Kesimpulan dari ketiga program di atas adalah bahwa masing-masing memiliki fungs
 [1] GeeksforGeeks. (2023, July 7). Basic Input/Output in C++. https://www.geeksforgeeks.org/basic-input-output-c/
 [2] CodesCracker. (n.d.). C++ Program to Convert Number to Words. https://codescracker.com/cpp/program/cpp-program-convert-number-to-words.htm
 [3] Modul 1. (2025). Code::Blocks IDE & Pengenalan Bahasa C++ (Bagian Pertama).
+
 
 
