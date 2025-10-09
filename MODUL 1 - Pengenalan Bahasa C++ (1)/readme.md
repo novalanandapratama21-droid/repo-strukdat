@@ -1,4 +1,4 @@
- # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
+  # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
@@ -10,15 +10,14 @@ Modul ini membahas dasar-dasar pemrograman C++ dengan menggunakan Code::Blocks s
 ### 1. [Code Blocks Ide & Pengenalan Bahasa C++(Bagian Pertama]
 
 #include <iostream>
+
 using namespace std;
 
 void tulis (int x){
     for (int i = 0; 1 < x; i++ ){
         cout << "Baris ke -: " << i+1 << endl;
-    
     }
 }
-
 int main () {
     int jum;
     cout << "Jumlah baris kata: ";
@@ -26,7 +25,6 @@ int main () {
     tulis(jum);
     
     return 0;
-
 }
 
 Kode di atas berfungsi untuk menampilkan teks “Baris ke-” sesuai jumlah yang dimasukkan pengguna. Nilai input disimpan pada variabel `jum`, lalu dikirim ke fungsi `tulis()` yang menggunakan perulangan `for` untuk mencetak baris secara berurutan. Namun, ada kesalahan pada kondisi perulangan (`1 < x` seharusnya `i < x`), sehingga perlu diperbaiki agar program dapat berjalan dengan benar.
