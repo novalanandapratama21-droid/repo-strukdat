@@ -3,57 +3,77 @@
 
 ## Dasar Teori
 
-ADT adalah TYPE dan sekumpulan PRIMITIF (operasi dasar) terhadap TYPE tersebut. Selain itu, dalam
-sebuah ADT yang lengkap, disertakan pula definisi invarian dari TYPE dan aksioma yang berlaku. ADT
-merupakan definisi STATIK.
+Abstract Data Type (ADT) merupakan konsep dasar dalam pemrograman yang mendefinisikan suatu tipe data beserta operasi-operasi yang dapat dilakukan terhadapnya tanpa memperhatikan bagaimana data tersebut diimplementasikan. Dalam bahasa C++, ADT biasanya diwujudkan melalui penggunaan `struct` dan fungsi-fungsi pendukung yang dipisahkan ke dalam beberapa file, yaitu file header (`.h`) untuk mendefinisikan tipe dan deklarasi fungsi, file implementasi (`.cpp`) untuk merealisasikan fungsi, serta file utama (`main.cpp`) sebagai penguji ADT. Pemisahan ini bertujuan agar program lebih terstruktur, mudah dibaca, dan dapat digunakan ulang. Dengan memahami ADT, programmer dapat membangun program yang modular, efisien, dan sesuai dengan prinsip abstraksi data.
+
 ## Guided 
 
 ### 1. [ABSTRACT DATA TYPE (ADT)]
+Code mahasiswa.h
+```C++
+#ifndef MAHASISWA_H_INCLUDED 
+#define MAHASISWA_H_INCLUDED 
 
+struct mahasiswa { 
+    char nim[10]; 
+    int nilai1, nilai2; 
+};
+
+void inputMhs(mahasiswa &m); 
+float rata2(mahasiswa m); 
+
+#endif
+```
+Code mahasiswa.cpp
+```C++
+#include <iostream>
+#include "mahasiswa.h"
+void inputMhs(mahasiswa &m){ 
+    cout << "input nama = "; 
+    cin >> (m).nim; 
+    cout << "input nilai = "; 
+    cin >> (m).nilai1; 
+    cout << "input nilai2 = "; 
+    cin >> (m).nilai2;
+} 
+ 
+float rata2(mahasiswa m){ 
+  return float(m.nilai1+m.nilai2)/2; 
+}
+```
+Code main.cpp
 ```C++
 #include <iostream>
 using namespace std;
 
-int main() {
-    // --- Array 1 Dimensi ---
-    int arr[5] = {10, 20, 30, 40, 50};
-    cout << "Array 1 Dimensi:" << endl;
-    for (int i = 0; i < 5; i++) {
-        cout << "Element ke-" << i << ": " << arr[i] << endl;
-    }
-    cout << endl;
+struct mahasiswa{ 
+    char nim[10]; 
+    int nilai1,nilai2;
+};
 
-    // --- Array 2 Dimensi ---
-    int arr2D[2][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-    };
-    cout << "Array 2 Dimensi:" << endl;
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << "arr2D[" << i << "][" << j << "]: " << arr2D[i][j]
-            << " ";
-        }
-        cout << endl;
-    }
-    // --- Array Multi Dimensi (3D) ---
-    int arr3D[2][2][3] = {
-        { {1, 2, 3}, {4, 5, 6} },
-        { {7, 8, 9}, {10, 11, 12} },
-    };
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            for (int k = 0; k < 3; k++) {
-                cout << "arr3D[" << i << "][" << j << "]["
-                << k << "]: " << arr3D[i][j][k] << endl;
-            }
-        }
-    }
+void inputMhs(mahasiswa &m); 
+float rata2(mahasiswa m);
 
-    return 0;
+int main() { 
+mahasiswa mhs; 
+inputMhs(mhs); 
+    cout << "rata-rata = " << rata2(mhs); 
+return 0; 
+}
+
+void inputMhs(mahasiswa &m){ 
+    cout << "input nama = "; 
+    cin >> m.nim; 
+    cout << "input nilai = "; 
+    cin >> m.nilai1; 
+    cout << "input nilai2 = ";
+    cin >> m.nilai2; 
+} 
+float rata2(mahasiswa m){ 
+return float(m.nilai1+m.nilai2)/2; 
 }
 ```
-Kode di atas berfungsi untuk menampilkan contoh array satu dimensi, dua dimensi, dan tiga dimensi. Program menggunakan perulangan for untuk menampilkan setiap elemen dari masing-masing array, sehingga pengguna dapat melihat cara mengakses dan menampilkan data pada array dengan berbagai dimensi.
+Program ini dibuat untuk menerapkan konsep Abstract Data Type (ADT) sederhana menggunakan tiga file terpisah (main.cpp, mahasiswa.h, dan mahasiswa.cpp).
+Program berfungsi untuk memasukkan data mahasiswa berupa NIM dan dua nilai, kemudian menghitung rata-rata dari kedua nilai tersebut menggunakan fungsi rata2().
 
 ## Unguided 
 
@@ -189,78 +209,64 @@ Kode di atas menerapkan konsep Abstract Data Type (ADT) untuk mendefinisikan tip
 #include <iostream>
 using namespace std;
 
-int cariMin(int a[], int n);
-int cariMaks(int a[], int n);
-void hitungRata(int a[], int n);
+void tampilArray(int A[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << A[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void tukarArray(int A[3][3], int B[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            int temp = A[i][j];
+            A[i][j] = B[i][j];
+            B[i][j] = temp;
+        }
+    }
+}
+
+void tukarPointer(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
 
 int main() {
-    int arr[10] = {11,8,5,7,12,26,3,54,33,55};
-    int pilih, n = 10;
+    int A[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+    int B[3][3] = {{9,8,7},{6,0,4},{3,2,1}};
+    int a = 10, b = 20;
+    int *pa = &a, *pb = &b;
 
-    do {
-        cout << "\n--- Menu Program Array ---\n";
-        cout << "1. Tampilkan isi array\n";
-        cout << "2. Cari nilai maksimum\n";
-        cout << "3. Cari nilai minimum\n";
-        cout << "4. Hitung nilai rata-rata\n";
-        cout << "5. Keluar\n";
-        cout << "Pilih: ";
-        cin >> pilih;
+    cout << "=== ARRAY SEBELUM DITUKAR ===" << endl;
+    cout << "Array A:\n"; tampilArray(A);
+    cout << "Array B:\n"; tampilArray(B);
 
-        switch(pilih) {
-            case 1:
-                for(int i=0;i<n;i++)
-                    cout << arr[i] << " ";
-                cout << endl;
-                break;
-            case 2:
-                cout << "Nilai maksimum: " << cariMaks(arr,n) << endl;
-                break;
-            case 3:
-                cout << "Nilai minimum: " << cariMin(arr,n) << endl;
-                break;
-            case 4:
-                hitungRata(arr,n);
-                break;
-            case 5:
-                cout << "Terima kasih!\n";
-                break;
-            default:
-                cout << "Pilihan tidak valid!\n";
-        }
-    } while(pilih != 5);
+    tukarArray(A, B);
+
+    cout << "\n=== ARRAY SETELAH DITUKAR ===" << endl;
+    cout << "Array A:\n"; tampilArray(A);
+    cout << "Array B:\n"; tampilArray(B);
+
+    cout << "\n=== NILAI POINTER ===" << endl;
+    cout << "Sebelum tukar: a = " << a << ", b = " << b << endl;
+    tukarPointer(pa, pb);
+    cout << "Sesudah tukar: a = " << a << ", b = " << b << endl;
 
     return 0;
 }
 
-int cariMin(int a[], int n){
-    int min = a[0];
-    for(int i=1;i<n;i++)
-        if(a[i]<min) min = a[i];
-    return min;
-}
-
-int cariMaks(int a[], int n){
-    int maks = a[0];
-    for(int i=1;i<n;i++)
-        if(a[i]>maks) maks = a[i];
-    return maks;
-}
-
-void hitungRata(int a[], int n){
-    int total=0;
-    for(int i=0;i<n;i++) total += a[i];
-    cout << "Nilai rata-rata: " << (float)total/n << endl;
-}
 ```
 #### Output:
-<img width="599" height="927" alt="Image" src="https://github.com/user-attachments/assets/3a1be501-56d9-45de-ac15-4a9260002600" />
+<img width="662" height="805" alt="image" src="https://github.com/user-attachments/assets/52423fb3-15e9-4268-a95e-a97728d01f24" />
 
-Kode di atas berfungsi untuk melakukan berbagai operasi pada data array berisi sepuluh angka. Program menampilkan menu interaktif yang memungkinkan pengguna memilih beberapa opsi, yaitu menampilkan isi array, mencari nilai maksimum, mencari nilai minimum, dan menghitung nilai rata-rata. Fungsi `cariMaks()` digunakan untuk menentukan nilai terbesar dari elemen array, sedangkan `cariMin()` untuk mencari nilai terkecil. Sementara itu, fungsi `hitungRata()` menjumlahkan semua elemen array dan membaginya dengan jumlah data untuk mendapatkan rata-ratanya. Program akan terus berjalan menampilkan menu sampai pengguna memilih opsi keluar.
-
+Kode di atas berfungsi untuk menampilkan dan menukar isi dua buah array dua dimensi berukuran 3×3 serta menukar nilai dua variabel menggunakan pointer. Program dimulai dengan menampilkan isi awal dari array `A` dan `B`, kemudian seluruh elemen dari kedua array ditukar menggunakan prosedur `tukarArray()`. Setelah pertukaran, hasil isi array ditampilkan kembali untuk menunjukkan perubahannya. Selain itu, program juga menukar nilai dua variabel `a` dan `b` dengan prosedur `tukarPointer()` yang menggunakan konsep pointer untuk mengakses dan menukar nilai di memori. Secara keseluruhan, program ini memperlihatkan penerapan konsep fungsi, array dua dimensi, dan pointer dalam melakukan manipulasi data di C++.
 
 #### Full code Screenshot:
-<img width="476" height="940" alt="Image" src="https://github.com/user-attachments/assets/78039e91-904a-4c18-8aad-069adf6f16ad" />
+<img width="595" height="923" alt="image" src="https://github.com/user-attachments/assets/70234abd-be2d-47f4-81a7-69d74fdf98bd" />
+
 
 
 ### 🧾 **Kesimpulan**
