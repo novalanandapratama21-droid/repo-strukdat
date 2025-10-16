@@ -1,4 +1,4 @@
-  # <h1 align="center">Laporan Praktikum Modul ABSTRACT DATA TYPE (ADT)</h1>
+# <h1 align="center">Laporan Praktikum Modul ABSTRACT DATA TYPE (ADT)</h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
