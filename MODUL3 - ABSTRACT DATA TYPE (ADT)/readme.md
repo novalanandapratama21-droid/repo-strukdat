@@ -262,14 +262,20 @@ Kode di atas berfungsi untuk melakukan berbagai operasi pada data array berisi s
 #### Full code Screenshot:
 <img width="476" height="940" alt="Image" src="https://github.com/user-attachments/assets/78039e91-904a-4c18-8aad-069adf6f16ad" />
 
-## Kesimpulan
-Ketiga program yang telah dibuat memiliki tujuan yang berbeda namun sama-sama melatih pemahaman dasar pemrograman C++. Program pertama digunakan untuk melakukan operasi aritmatika pada matriks, yaitu penjumlahan, pengurangan, dan perkalian. Program kedua menunjukkan cara menukar posisi tiga bilangan menggunakan variabel sementara. Sedangkan program ketiga menampilkan penerapan array dengan fungsi tambahan untuk mencari nilai maksimum, minimum, dan rata-rata melalui menu interaktif. Secara keseluruhan, ketiga program ini membantu memahami penggunaan array, perulangan, fungsi, serta logika dasar dalam penyusunan program C++.
+
+### 🧾 **Kesimpulan**
+
+Ketiga program yang telah dibuat memiliki tujuan yang berbeda namun sama-sama melatih pemahaman konsep dasar pemrograman C++ terutama pada penerapan struktur data dan tipe data abstrak.
+Program pertama digunakan untuk menyimpan dan menampilkan data mahasiswa menggunakan `struct`, serta menghitung nilai akhir melalui fungsi sederhana.
+Program kedua menerapkan konsep *Abstract Data Type (ADT)* dengan memisahkan file header (`.h`), implementasi (`.cpp`), dan program utama (`main.cpp`) untuk tipe data `pelajaran`, sehingga melatih pemahaman modularitas program.
+Sedangkan program ketiga menampilkan cara manipulasi data menggunakan array dua dimensi dan pointer, termasuk menukar nilai elemen dan variabel yang ditunjuk oleh pointer.
+Secara keseluruhan, ketiga program ini membantu memahami penggunaan `struct`, fungsi, ADT, array 2D, dan pointer dalam penyusunan program C++ yang lebih terstruktur dan efisien.
+
 
 ## Referensi
-[1] GeeksforGeeks. (n.d.). Different Operations on Matrices in C++. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/different-operation-matrices/
-[2] GeeksforGeeks. (n.d.). Maximum and Minimum in an Array in C++. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/dsa/maximum-and-minimum-in-an-array/
-[3] GeeksforGeeks. (n.d.). Menu Driven Program in C++ to Perform Various Basic Operations on Array. Retrieved October 9, 2025, from https://www.geeksforgeeks.org/dsa/menu-driven-program-in-cpp-to-perform-various-basic-operations-on-array/
-
+[1] GeeksforGeeks. (2024, April 15). Structures in C++. Diakses dari https://www.geeksforgeeks.org/structures-in-cpp/
+[2] EECS 280 Staff. (n.d.). Abstract Data Types in C++. University of Michigan. Diakses dari https://eecs280staff.github.io/notes/08_ADTs_in_C%2B%2B.html
+[3] Studytonight. (2022, Maret 30). C++ Program For Swapping Two Number In Function Using Pointer. Diakses dari https://www.studytonight.com/cpp-programs/cpp-program-for-swapping-two-number-in-function-using-pointer
 
 
 
