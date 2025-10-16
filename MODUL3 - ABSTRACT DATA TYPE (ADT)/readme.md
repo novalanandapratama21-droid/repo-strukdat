@@ -120,26 +120,69 @@ Kode di atas berfungsi untuk menyimpan dan menampilkan data beberapa mahasiswa m
 
 
 ### 2. [Soal]
+Code pelajaran.h
 ```C++
-#include <iostream>
+#ifndef PELAJARAN_H_INCLUDED
+#define PELAJARAN_H_INCLUDED
+#include <string>
 using namespace std;
 
-int main(){
-    int a, b, c, t;
-    cout << "Masukkan tiga bilangan: ";
-    cin >> a >> b >> c;
-    cout<<"Sebelum: "<<a<<" "<<b<<" "<<c<<endl;
-    t=a; a=b; b=c; c=t;
-    cout<<"Sesudah: "<<a<<" "<<b<<" "<<c<<endl;
+struct pelajaran {
+    string namaMapel;
+    string kodeMapel;
+};
+
+pelajaran create_pelajaran(string namapel, string kodepel);
+void tampil_pelajaran(pelajaran p);
+
+#endif
+```
+Code pelajaran.cpp
+```C++
+#include <iostream>
+#include "pelajaran.h"
+using namespace std;
+
+pelajaran create_pelajaran(string namapel, string kodepel) {
+    pelajaran p;
+    p.namaMapel = namapel;
+    p.kodeMapel = kodepel;
+    return p;
+}
+
+void tampil_pelajaran(pelajaran pel) {
+    cout << "Nama Mata Pelajaran : " << pel.namaMapel << endl;
+    cout << "Kode Mata Pelajaran : " << pel.kodeMapel << endl;
+}
+```
+Code main.cpp
+```C++
+#include <iostream>
+#include "pelajaran.h"
+using namespace std;
+
+int main() {
+    string namapel = "Struktur Data";
+    string kodepel = "STD";
+
+    pelajaran pel = create_pelajaran(namapel, kodepel);
+    tampil_pelajaran(pel);
+
+    return 0;
 }
 ```
 #### Output:
-<img width="644" height="181" alt="Image" src="https://github.com/user-attachments/assets/c17cb710-1783-4a6e-8998-cc5c2e5c5634" />
+<img width="1166" height="197" alt="image" src="https://github.com/user-attachments/assets/e98d2b65-a016-49ef-8d2a-ab0bccb4d9d0" />
 
-Kode di atas berfungsi untuk menukar posisi tiga bilangan yang dimasukkan oleh pengguna. Program meminta input tiga angka melalui `cin`, lalu menampilkan nilai sebelum dan sesudah pertukaran menggunakan `cout`. Proses penukaran dilakukan dengan memanfaatkan variabel sementara `t`, sehingga nilai `a`, `b`, dan `c` berpindah posisi secara berurutan.
+
+Kode di atas menerapkan konsep Abstract Data Type (ADT) untuk mendefinisikan tipe data pelajaran yang memiliki atribut namaMapel dan kodeMapel. Implementasi dibagi menjadi tiga bagian yaitu file header (pelajaran.h), file implementasi (pelajaran.cpp), dan file utama (main.cpp). Program utama membuat sebuah objek pelajaran melalui fungsi create_pelajaran, kemudian menampilkan hasilnya menggunakan prosedur tampil_pelajaran. Dengan pemisahan ini, program menjadi lebih terstruktur dan mudah digunakan ulang sesuai prinsip modularitas pada ADT.
 
 #### Full code Screenshot:
-<img width="695" height="386" alt="Image" src="https://github.com/user-attachments/assets/c58a5552-8ba1-4182-b4ab-daa0afe40792" />
+<img width="920" height="530" alt="image" src="https://github.com/user-attachments/assets/66b95cf5-9a73-490a-b1e5-adb93112dd7d" />
+<img width="918" height="544" alt="image" src="https://github.com/user-attachments/assets/ec95b7e4-8457-41a2-b040-f39adc8d04ac" />
+<img width="935" height="499" alt="image" src="https://github.com/user-attachments/assets/d654697a-5a5a-4bdb-bc5b-c2eef767971e" />
+
+
 
 ### 3. [Soal]
 ```C++
