@@ -1,12 +1,14 @@
-  # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
+  # <h1 align="center">Laporan Praktikum Modul ABSTRACT DATA TYPE (ADT)</h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
 
-Modul 2: Pengenalan Bahasa C++ (Bagian Kedua) membahas dasar logika dalam pemrograman C++. Di dalamnya dijelaskan cara membuat program yang bisa menerima input, memproses data, dan menampilkan hasil. Program C++ dimulai dengan #include <iostream> dan fungsi utama int main(). Perintah cout digunakan untuk menampilkan teks ke layar, sedangkan cin digunakan untuk membaca input dari pengguna. Variabel dipakai untuk menyimpan nilai, dan setiap variabel memiliki tipe data, seperti int untuk angka bulat, float untuk angka desimal, char untuk huruf, string untuk teks, dan bool untuk benar atau salah. Operator digunakan untuk menghitung atau membandingkan nilai, misalnya +, -, *, /, ==, <, > dan sebagainya. Percabangan seperti if dan switch digunakan agar program bisa mengambil keputusan berdasarkan kondisi tertentu. Perulangan seperti for, while, dan do-while digunakan agar perintah bisa dijalankan berulang kali. Secara singkat, modul ini mengajarkan dasar logika pemrograman dengan C++ agar program bisa berpikir dan bekerja sesuai perintah yang diberikan.
+ADT adalah TYPE dan sekumpulan PRIMITIF (operasi dasar) terhadap TYPE tersebut. Selain itu, dalam
+sebuah ADT yang lengkap, disertakan pula definisi invarian dari TYPE dan aksioma yang berlaku. ADT
+merupakan definisi STATIK.
 ## Guided 
 
-### 1. [Pengenalan Bahasa C++(Bagian Kedua]
+### 1. [ABSTRACT DATA TYPE (ADT)]
 
 ```C++
 #include <iostream>
@@ -59,60 +61,63 @@ Kode di atas berfungsi untuk menampilkan contoh array satu dimensi, dua dimensi,
 
 ```C++
 #include <iostream>
+
 using namespace std;
 
-int main() {
-    int A[3][3], B[3][3], C[3][3];
-    cout << "Masukkan matriks A:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cin >> A[i][j];
-        }
+struct Mhs{
+    char nama[30];
+    char nim[10];
+    float uts, uas, tugas, akhir;
+};
+
+float akhir(float uts, float uas, float tugas){
+    return (0.3 * uts) + (0.4 * uas) + (0.3 * tugas);
+}
+
+int main(){
+    Mhs mhs[10];
+    int n;
+
+    cout << "Masukkan jumlah mahasiswa: ";
+    cin >> n;   
+
+    for(int i = 0; i < n; i++){
+        cout << "Masukkan data mahasiswa ke-" << (i + 1) << ":\n";
+        cout << "Nama: ";
+        cin >> mhs[i].nama;
+        cout << "NIM: ";
+        cin >> mhs[i].nim;
+        cout << "Nilai UTS: ";
+        cin >> mhs[i].uts;
+        cout << "Nilai UAS: ";
+        cin >> mhs[i].uas;
+        cout << "Nilai Tugas: ";
+        cin >> mhs[i].tugas;
+
+        mhs[i].akhir = akhir(mhs[i].uts, mhs[i].uas, mhs[i].tugas);
     }
-    cout << "Masukkan matriks B:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cin >> B[i][j];
-        }
+
+    cout << "\nData Mahasiswa:\n";
+    for(int i = 0; i < n; i++){
+         cout << "\nNama         : " << mhs[i].nama;
+        cout << "\nNIM          : " << mhs[i].nim;
+        cout << "\nNilai Akhir  : " << mhs[i].akhir << endl;
     }
-    cout << "Penjumlahan:" << endl;
-    for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-            C[i][j]=A[i][j]+B[i][j];
-            cout<<C[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    cout << "Pengurangan:" << endl;
-    for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-            C[i][j]=A[i][j]-B[i][j];
-            cout<<C[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    cout << "Perkalian:" << endl;
-    for(int i=0;i<3;i++){   
-        for(int j=0;j<3;j++){
-            C[i][j]=0;
-            for(int k=0;k<3;k++){
-                C[i][j]+=A[i][k]*B[k][j];
-            }
-            cout<<C[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+
+    return 0;
 }
 
 ```
 #### Output:
-<img width="643" height="943" alt="Image" src="https://github.com/user-attachments/assets/cae7fee4-c6cf-4e12-a597-f997107a2244" />
+<img width="611" height="740" alt="image" src="https://github.com/user-attachments/assets/0e7bcd60-27a2-4241-9db2-12362cd59864" />
 
-Kode di atas berfungsi untuk melakukan operasi penjumlahan, pengurangan, dan perkalian antara dua matriks berukuran 3x3. Program meminta pengguna untuk memasukkan nilai elemen-elemen matriks A dan B menggunakan `cin`, lalu hasilnya disimpan ke dalam matriks C. Setelah itu, program menampilkan hasil penjumlahan, pengurangan, dan perkalian kedua matriks menggunakan `cout` dengan perulangan bersarang untuk mengakses setiap elemen matriks satu per satu.
+
+Kode di atas berfungsi untuk menyimpan dan menampilkan data beberapa mahasiswa menggunakan struktur (struct). Program meminta pengguna untuk menginput nama, NIM, serta nilai UTS, UAS, dan tugas. Setelah itu, nilai akhir dihitung dengan rumus 0.3*UTS + 0.4*UAS + 0.3*Tugas melalui fungsi khusus. Hasilnya, program menampilkan kembali seluruh data mahasiswa beserta nilai akhirnya, sehingga pengguna dapat melihat daftar nilai yang telah dihitung secara otomatis.
 
 
 #### Full code Screenshot:
-<img width="1394" height="996" alt="Image" src="https://github.com/user-attachments/assets/52fb48bc-3dec-4091-9901-0b9a53896ffd" />
+<img width="768" height="1011" alt="image" src="https://github.com/user-attachments/assets/66349eb0-b652-4e2a-a98f-a064045169a8" />
+
 
 ### 2. [Soal]
 ```C++
