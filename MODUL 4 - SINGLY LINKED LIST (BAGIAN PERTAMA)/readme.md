@@ -8,7 +8,7 @@ Modul ini membahas dasar-dasar struktur data **Singly Linked List** dalam bahasa
 ## Guided 
 
 ### 1. [Singly Linked List (Bagian Pertama)]
-list.h
+*list.h*
 ```C++
 //
 //
@@ -51,7 +51,7 @@ void insertLast(linkedlist &List, address nodeBaru);
 
 #endif
 ```
-list.cpp
+*list.cpp*
 ```C++
 #include "list.h"
 #include <iostream>
@@ -226,7 +226,7 @@ void deleteList(linkedlist &List){
     cout << "List sudah terhapus!" << endl;
 }
 ```
-main.cpp
+*main.cpp*
 ```C++
 #include "list.h"
 
