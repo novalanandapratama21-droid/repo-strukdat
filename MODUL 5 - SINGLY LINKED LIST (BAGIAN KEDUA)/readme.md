@@ -523,7 +523,6 @@ int main() {
 #### Output:
 <img width="726" height="128" alt="image" src="https://github.com/user-attachments/assets/9727cd84-919c-4108-9384-1874886e4068" />
 
-
 Kode ini membuat dan menampilkan singly linked list dalam bahasa C++. Setiap node berisi data dan pointer ke node berikutnya, sedangkan struktur List menyimpan pointer ke node pertama. Fungsi createList menginisialisasi list, alokasi membuat node baru, insertFirst menambah node di awal, dan printInfo menampilkan isi list. Pada fungsi main, beberapa node dengan nilai berbeda ditambahkan, lalu seluruh isi list ditampilkan secara berurutan.
 
 #### Full code Screenshot:
@@ -531,128 +530,6 @@ Kode ini membuat dan menampilkan singly linked list dalam bahasa C++. Setiap nod
 <img width="565" height="840" alt="image" src="https://github.com/user-attachments/assets/95b86ae0-af63-4819-9873-cc345a7a87ba" />
 <img width="470" height="724" alt="image" src="https://github.com/user-attachments/assets/f6527e62-c20b-4839-8950-ac99ae6dcc0c" />
 
-
-
-
-### 3. [Soal]
-*Singlylist.h*
-```C++
-#ifndef SINGLYLIST_H_INCLUDED
-#define SINGLYLIST_H_INCLUDED
-
-#include <iostream>
-using namespace std;
-
-#define Nil NULL
-typedef int infotype;
-typedef struct elmList *address;
-
-struct elmList {
-    infotype info;
-    address next;
-};
-
-struct List {
-    address first;
-};
-
-void createList(List &L);
-address alokasi(infotype x);
-void dealokasi(address &P);
-void insertFirst(List &L, address P);
-address findElm(List L, infotype x);
-void printInfo(List L);
-
-#endif
-```
-*Singlylist.cpp*
-```C++
-#include "Singlylist.h"
-
-void createList(List &L) {
-    L.first = Nil;
-}
-
-address alokasi(infotype x) {
-    address P = new elmList;
-    P->info = x;
-    P->next = Nil;
-    return P;
-}
-
-void dealokasi(address &P) {
-    delete P;
-    P = Nil;
-}
-
-void insertFirst(List &L, address P) {
-    P->next = L.first;
-    L.first = P;
-}
-
-void printInfo(List L) {
-    address P = L.first;
-    while (P != Nil) {
-        cout << P->info << " ";
-        P = P->next;
-    }
-    cout << endl;
-}
-
-address findElm(List L, infotype x) {
-    address P = L.first;
-    while (P != Nil && P->info != x) {
-        P = P->next;
-    }
-    return P;
-}
-
-
-```
-*main.cpp*
-```C++
-#include "Singlylist.h"
-
-int main() {
-    List L;
-    address P1, P2, P3, P4, P5= Nil;
-    createList(L);
-
-    P1 = alokasi(2);
-    insertFirst(L, P1);
-
-    P2 = alokasi(0);
-    insertFirst(L, P2);
-
-    P3 = alokasi(8);
-    insertFirst(L, P3);
-
-    P4 = alokasi(12);
-    insertFirst(L, P4);
-
-    P5 = alokasi(9);
-    insertFirst(L, P5);
-
-    printInfo(L);
-
-    address cari = findElm(L, 8);
-       if (cari != Nil) {
-            cout << "Elemen info ditemukan : " << cari->info << endl;
-        } else {
-            cout << "Elemen dengan info 8 tidak ditemukan." << endl;
-    }
-    return 0;
-}
-```
-#### Output:
-<img width="737" height="163" alt="image" src="https://github.com/user-attachments/assets/30bf8bb7-4a91-4353-8f44-11cb0c21f7d1" />
-
-Program ini menambahkan fungsi totalInfo() untuk menghitung jumlah seluruh nilai info pada setiap node di dalam linked list. Prosesnya dilakukan dengan menelusuri seluruh elemen dan menjumlahkan nilainya satu per satu. Hasil akhir perhitungan dari data 9 + 12 + 8 + 0 + 2 menghasilkan total 31. Fungsi ini menunjukkan penerapan perulangan dalam pengolahan data dinamis menggunakan pointer.
-
-#### Full code Screenshot:
-<img width="510" height="586" alt="image" src="https://github.com/user-attachments/assets/f50e4f59-314b-44b5-9be1-be73e4fcfcc5" />
-<img width="603" height="806" alt="image" src="https://github.com/user-attachments/assets/8d406e73-facb-4111-a8ee-6167060d2151" />
-<img width="653" height="672" alt="image" src="https://github.com/user-attachments/assets/cbd4209f-ffea-4f6a-9d8b-ee38f310be84" />
 
 ### 2. [Soal]
 *Singlylist.h*
@@ -765,11 +642,144 @@ int main() {
 }
 ```
 #### Output:
-<img width="715" height="157" alt="Screenshot 2025-10-29 195147" src="https://github.com/user-attachments/assets/f808d174-7ab1-4571-a4bc-a257a49c18b2" />
+<img width="715" height="157" alt="Screenshot 2025-10-29 195147" src="https://github.com/user-attachments/assets/ad8548ce-f5fa-4e98-bc1e-afd2b9a42ab5" />
 
 Program ini menambahkan fungsi findElm() yang digunakan untuk mencari node berdasarkan nilai tertentu pada linked list. Fungsi ini menelusuri setiap node dari awal hingga akhir untuk menemukan elemen dengan nilai yang dicari, misalnya 8. Jika ditemukan, program akan menampilkan alamat dan nilai elemen tersebut. Konsep ini menunjukkan bagaimana operasi sequential search diterapkan pada struktur data dinamis seperti linked list.
 
 #### Full code Screenshot:
+<img width="504" height="573" alt="Screenshot 2025-10-29 233319" src="https://github.com/user-attachments/assets/8cbc2e48-9dda-4bad-82b7-4fbb5e086362" />
+<img width="603" height="806" alt="image" src="https://github.com/user-attachments/assets/8d406e73-facb-4111-a8ee-6167060d2151" />
+<img width="653" height="672" alt="image" src="https://github.com/user-attachments/assets/cbd4209f-ffea-4f6a-9d8b-ee38f310be84" />
+
+### 3. [Soal]
+*Singlylist.h*
+```C++
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+typedef int infotype;
+typedef struct elmList *address;
+
+struct elmList {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address first;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void insertFirst(List &L, address P);
+address findElm(List L, infotype x);
+void printInfo(List L);
+int totalInfo(List L);
+
+#endif
+```
+*Singlylist.cpp*
+```C++
+#include "Singlylist.h"
+
+void createList(List &L) {
+    L.first = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new elmList;
+    P->info = x;
+    P->next = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void insertFirst(List &L, address P) {
+    P->next = L.first;
+    L.first = P;
+}
+
+void printInfo(List L) {
+    address P = L.first;
+    while (P != Nil) {
+        cout << P->info << " ";
+        P = P->next;
+    }
+    cout << endl;
+}
+
+address findElm(List L, infotype x) {
+    address P = L.first;
+    while (P != Nil && P->info != x) {
+        P = P->next;
+    }
+    return P;
+}
+
+int totalInfo(List L) {
+    int total = 0;
+    address P = L.first;
+    while (P != Nil) {
+        total += P->info;
+        P = P->next;
+    }
+    return total;
+}
+```
+*main.cpp*
+```C++
+#include "Singlylist.h"
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5= Nil;
+    createList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    printInfo(L);
+
+    address cari = findElm(L, 8);
+       if (cari != Nil) {
+            cout << "Elemen info ditemukan : " << cari->info << endl;
+        } else {
+            cout << "Elemen dengan info 8 tidak ditemukan." << endl;
+    }
+    cout << "Total seluruh info elemen = " << totalInfo(L) << endl;
+    return 0;
+}
+```
+#### Output:
+<img width="737" height="163" alt="Screenshot 2025-10-29 233843" src="https://github.com/user-attachments/assets/11b7ce09-34a6-4783-9552-e3cbaaf367a6" />
+
+Program ini menambahkan fungsi totalInfo() untuk menghitung jumlah seluruh nilai info pada setiap node di dalam linked list. Prosesnya dilakukan dengan menelusuri seluruh elemen dan menjumlahkan nilainya satu per satu. Hasil akhir perhitungan dari data 9 + 12 + 8 + 0 + 2 menghasilkan total 31. Fungsi ini menunjukkan penerapan perulangan dalam pengolahan data dinamis menggunakan pointer.
+
+#### Full code Screenshot:
+<img width="510" height="586" alt="Screenshot 2025-10-29 233946" src="https://github.com/user-attachments/assets/5582f588-cd0e-4784-b5c2-72c92b11c342" />
+<img width="612" height="856" alt="Screenshot 2025-10-29 234003" src="https://github.com/user-attachments/assets/ae8fcffd-437c-4ad5-8343-4d43ec240f11" />
+<img width="660" height="699" alt="image" src="https://github.com/user-attachments/assets/2f356000-341b-46a8-9be0-7ddacf9a9ded" />
 
 ## Kesimpulan
 Kesimpulan dari ketiga program di atas adalah bahwa semuanya menerapkan konsep struktur data dinamis menggunakan **singly linked list** dalam bahasa C++. Program pertama berfokus pada pembuatan dan penambahan elemen ke dalam list, program kedua menambahkan fitur pencarian elemen serta perhitungan total nilai, sedangkan program ketiga mengembangkan fungsi-fungsi seperti pembaruan dan pencarian data berdasarkan kriteria tertentu. Dari ketiganya dapat disimpulkan bahwa linked list memungkinkan pengelolaan data secara fleksibel tanpa batasan ukuran seperti array, karena elemen dapat ditambah atau diubah dengan mudah. Pemahaman terhadap pointer dan manajemen memori sangat penting agar proses manipulasi data dalam struktur dinamis ini berjalan dengan benar dan efisien.
