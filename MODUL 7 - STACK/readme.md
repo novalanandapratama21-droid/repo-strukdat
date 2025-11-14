@@ -1,11 +1,10 @@
 
-  # <h1 align="center">Laporan Praktikum Modul Singly Linked List (Bagian Pertama)</h1>
+  # <h1 align="center">Laporan Praktikum Modul Stack</h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
 
-Modul ini membahas dasar-dasar struktur data **Singly Linked List** dalam bahasa C++. Singly linked list merupakan kumpulan node yang saling terhubung secara searah, di mana setiap node berisi data dan pointer yang menunjuk ke node berikutnya. Berbeda dengan array yang memiliki ukuran tetap, linked list bersifat dinamis sehingga memungkinkan penambahan dan penghapusan elemen dengan mudah tanpa harus menggeser data lain. Di dalam modul dijelaskan cara mendeklarasikan struktur node, membuat pointer head, serta mengimplementasikan operasi dasar seperti menambah, menghapus, dan menampilkan isi list. Dengan mempelajari materi ini, mahasiswa dapat memahami konsep penyimpanan data yang lebih fleksibel dan efisien dalam pengelolaan memori.
-
+Modul ini membahas dasar-dasar struktur data Stack menggunakan array dalam bahasa C++. Stack merupakan struktur data yang mengikuti prinsip Last In, First Out (LIFO), di mana elemen yang terakhir dimasukkan akan menjadi elemen pertama yang dikeluarkan. Dalam implementasi berbasis array, stack terdiri dari sebuah array penampung data dan variabel top yang menunjuk ke posisi elemen teratas. Modul menjelaskan cara menginisialisasi stack, menambah data menggunakan operasi push, menghapus data menggunakan pop, serta menampilkan isi stack melalui printInfo. Selain operasi dasar, modul juga memperkenalkan pengembangan stack seperti membalik urutan elemen dengan balikStack, memasukkan elemen secara terurut menggunakan pushAscending, dan membaca input karakter berturut-turut dengan getInputStream. Dengan mempelajari materi ini, mahasiswa dapat memahami bagaimana stack bekerja, bagaimana operasi dilakukan pada struktur LIFO, serta bagaimana array dimanfaatkan untuk mengelola data secara terstruktur dan efisien.
 ## Guided 
 
 ### 1. [Singly Linked List (Bagian Pertama)]
@@ -385,10 +384,11 @@ getInputStream membaca input pengguna satu karakter setiap kali, kemudian memasu
 
 
 ## Kesimpulan
-Kesimpulan dari kedua program di atas adalah bahwa keduanya menerapkan konsep struktur data dinamis menggunakan singly linked list dalam bahasa C++. Program pertama menekankan pada pembuatan dan penambahan elemen ke dalam list, sedangkan program kedua menambahkan fitur penghapusan elemen serta perhitungan jumlah node. Dari kedua program tersebut dapat disimpulkan bahwa linked list memungkinkan pengelolaan data yang lebih fleksibel dibanding array, karena elemen dapat ditambah atau dihapus tanpa perlu menggeser data lain. Pemahaman tentang pointer dan alokasi memori menjadi hal penting untuk menghindari kesalahan saat mengelola struktur data dinamis seperti ini.
+Kesimpulan dari ketiga program di atas adalah bahwa semuanya menerapkan konsep struktur data stack menggunakan array sebagai media penyimpanan. Program pertama menekankan pada operasi dasar seperti push, pop, menampilkan isi stack, serta membalik urutannya. Program kedua memperluas fungsi stack dengan menambahkan pushAscending yang memungkinkan penyisipan data secara terurut. Program ketiga menambahkan kemampuan membaca input karakter berurutan dari pengguna melalui getInputStream. Dari seluruh program tersebut dapat disimpulkan bahwa implementasi stack dengan array memungkinkan pengelolaan data secara terstruktur berdasarkan prinsip LIFO, sekaligus dapat dikembangkan dengan berbagai fitur tambahan. Pemahaman mengenai indeks array, operasi pada variabel top, serta alur masuk-keluarnya data menjadi hal penting agar stack dapat dikelola dengan benar dan efisien.
 
 
 ## Referensi
-[1] GeeksforGeeks. (n.d.). C++ Program for Deleting a Node in a Linked List. Diakses pada 23 Oktober 2025, dari https://www.geeksforgeeks.org/cpp/cpp-program-for-deleting-a-node-in-a-linked-list/
-[2] W3Schools. (n.d.). DSA Linked Lists. Diakses pada 23 Oktober 2025, dari https://www.w3schools.com/dsa/dsa_theory_linkedlists.php
+[1] GeeksforGeeks. (n.d.). Stack Data Structure. https://www.geeksforgeeks.org/stack-data-structure/
+[2] Tutorialspoint. (n.d.). Data Structures — Stack. https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm
+[3] W3Schools. (n.d.). C++ Input and Streams. https://www.w3schools.com/cpp/cpp_files.asp
 
