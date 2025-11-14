@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul Doubly Linked List (Bagian Pertama)</h1>
+# <h1 align="center">Laporan Praktikum Modul Doubly Linked List (Bagian Kedua)</h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
@@ -11,7 +11,7 @@ Komponen-komponen dalam Doubly linked list:
 4. Prev : pointer pada elemen sebagai successor yang menunjuk pada elemen dibelakangnya.
 ## Guided 
 
-### 1. [Doubly Linked List (Bagian Pertama)]
+### 1. [Doubly Linked List (Bagian Kedua)]
 ```C++
 #include <iostream>
 #define Nil NULL
