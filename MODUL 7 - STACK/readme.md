@@ -251,6 +251,138 @@ Fungsi pushAscending memasukkan data ke stack sambil menjaga agar elemen-elemen 
 <img width="368" height="890" alt="image" src="https://github.com/user-attachments/assets/5d090075-39fe-44f9-b741-15e5888487ce" />
 <img width="436" height="576" alt="image" src="https://github.com/user-attachments/assets/eacb0216-15b2-4b42-99dd-cb59b21e637d" />
 
+### 3. [Soal]
+*stack.h*
+```C++
+#ifndef STACK_H
+#define STACK_H
+
+typedef int infotype;
+
+typedef struct {
+    infotype info[20];
+    int top;
+} Stack;
+
+void createStack(Stack &S);
+void push(Stack &S, infotype x);
+infotype pop(Stack &S);
+void printInfo(Stack S);
+void balikStack(Stack &S);
+void pushAscending(Stack &S, infotype x);
+void getInputStream(Stack &S);
+
+#endif
+```
+*stack.cpp*
+```C++
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+void createStack(Stack &S) {
+    S.top = -1;
+}
+
+void push(Stack &S, infotype x) {
+    if (S.top < 19) {
+        S.top++;
+        S.info[S.top] = x;
+    } else {
+        cout << "Stack penuh!" << endl;
+    }
+}
+
+infotype pop(Stack &S) {
+    if (S.top >= 0) {
+        int x = S.info[S.top];
+        S.top--;
+        return x;
+    } else {
+        cout << "Stack kosong!" << endl;
+        return -1;
+    }
+}
+
+void printInfo(Stack S) {
+    cout << "[TOP] ";
+    for (int i = S.top; i >= 0; i--) {
+        cout << S.info[i] << " ";
+    }
+    cout << endl;
+}
+
+void balikStack(Stack &S) {
+    Stack temp;
+    createStack(temp);
+
+    while (S.top != -1) {
+        push(temp, pop(S));
+    }
+
+    S = temp;
+}
+
+void pushAscending(Stack &S, infotype x) {
+    Stack temp;
+    createStack(temp);
+
+    while (S.top != -1 && S.info[S.top] > x) {
+        push(temp, pop(S));
+    }
+
+    push(S, x);
+
+    while (temp.top != -1) {
+        push(S, pop(temp));
+    }
+}
+
+void getInputStream(Stack &S) {
+    char c;
+
+    cin >> c;
+
+    while (c != '\n')
+    {
+        push(S, c - '0');
+        c = cin.get();
+    }
+}
+```
+*main.cpp*
+```C++
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+int main() {
+    cout << "Hello world!" << endl;
+
+    Stack S;
+    createStack(S);
+
+    getInputStream(S);
+
+    printInfo(S);
+
+    cout << "balik stack" << endl;
+    balikStack(S);
+    printInfo(S);
+
+    return 0;
+}
+```
+#### Output:
+<img width="781" height="199" alt="image" src="https://github.com/user-attachments/assets/c310e061-eee7-474d-bc68-353d6aaa0d28" />
+
+getInputStream membaca input pengguna satu karakter setiap kali, kemudian memasukkan setiap karakter angka ke dalam stack. Pembacaan dilakukan terus-menerus menggunakan cin.get() sampai pengguna menekan tombol ENTER. Setiap karakter yang diterima dikonversi menjadi angka dan langsung dimasukkan ke stack dengan push. Di fungsi main, input dimasukkan sebagai rangkaian angka, lalu isi stack ditampilkan sebelum dan sesudah dibalik menggunakan balikStack.
+
+#### Full code Screenshot:
+<img width="419" height="485" alt="image" src="https://github.com/user-attachments/assets/3fdf8e30-5b0a-4e1e-ba72-ea67dcccd39a" />
+<img width="309" height="883" alt="image" src="https://github.com/user-attachments/assets/b56f6a8e-6351-432e-9580-9997050d09c5" />
+<img width="389" height="503" alt="image" src="https://github.com/user-attachments/assets/6aaccb67-9de1-49de-a9a0-b33b9685f103" />
+
 
 ## Kesimpulan
 Kesimpulan dari kedua program di atas adalah bahwa keduanya menerapkan konsep struktur data dinamis menggunakan singly linked list dalam bahasa C++. Program pertama menekankan pada pembuatan dan penambahan elemen ke dalam list, sedangkan program kedua menambahkan fitur penghapusan elemen serta perhitungan jumlah node. Dari kedua program tersebut dapat disimpulkan bahwa linked list memungkinkan pengelolaan data yang lebih fleksibel dibanding array, karena elemen dapat ditambah atau dihapus tanpa perlu menggeser data lain. Pemahaman tentang pointer dan alokasi memori menjadi hal penting untuk menghindari kesalahan saat mengelola struktur data dinamis seperti ini.
