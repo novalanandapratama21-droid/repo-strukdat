@@ -497,145 +497,249 @@ Kode pada soal kedua berfungsi untuk mencari elemen tertentu di dalam Doubly Lin
 <img width="568" height="832" alt="image" src="https://github.com/user-attachments/assets/a9e25c92-8f19-4b42-aed5-c1bebe2c06fe" />
 
 ### 3. [Soal]
-*stack.h*
+*Doublylist.h*
 ```C++
-#ifndef STACK_H
-#define STACK_H
+#ifndef DOUBLYLIST_H
+#define DOUBLYLIST_H
+#include <iostream>
+using namespace std;
 
-typedef int infotype;
+#define Nil NULL
 
-typedef struct {
-    infotype info[20];
-    int top;
-} Stack;
+struct kendaraan {
+    string nopol;
+    string warna;
+    int thnBuat;
+};
 
-void createStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
-void pushAscending(Stack &S, infotype x);
-void getInputStream(Stack &S);
+typedef kendaraan infotype;
+
+struct ElmList;
+typedef ElmList* address;
+
+struct ElmList {
+    infotype info;
+    address next;
+    address prev;
+};
+
+struct List {
+    address First;
+    address Last;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertLast(List &L, address P);
+address findElm(List L, string key);
+void deleteFirst(List &L, address &P);
+void deleteLast(List &L, address &P);
+void deleteAfter(address Prec, address &P);
 
 #endif
 ```
-*stack.cpp*
+*Doublylist.cpp*
 ```C++
-#include <iostream>
-#include "stack.h"
-using namespace std;
+#include "Doublylist.h"
 
-void createStack(Stack &S) {
-    S.top = -1;
+void createList(List &L){
+    L.First = Nil;
+    L.Last = Nil;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < 19) {
-        S.top++;
-        S.info[S.top] = x;
+address alokasi(infotype x){
+    address P = new ElmList;
+    P->info = x;
+    P->next = Nil;
+    P->prev = Nil;
+    return P;
+}
+
+void dealokasi(address &P){
+    delete P;
+    P = Nil;
+}
+
+void insertLast(List &L, address P){
+    if(L.First == Nil){
+        L.First = P;
+        L.Last = P;
     } else {
-        cout << "Stack penuh!" << endl;
+        P->prev = L.Last;
+        L.Last->next = P;
+        L.Last = P;
     }
 }
 
-infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        int x = S.info[S.top];
-        S.top--;
-        return x;
+void printInfo(List L){
+    address P = L.First;
+    while(P != Nil){
+        cout << "no polisi : " << P->info.nopol << endl;
+        cout << "warna     : " << P->info.warna << endl;
+        cout << "tahun     : " << P->info.thnBuat << endl;
+        cout << endl;
+        P = P->next;
+    }
+}
+
+address findElm(List L, string key){
+    address P = L.First;
+    while(P != Nil){
+        if(P->info.nopol == key){
+            return P;    
+        }
+        P = P->next;
+    }
+    return Nil;
+}
+
+void deleteFirst(List &L, address &P){
+    P = L.First;
+    if(L.First == L.Last){
+        L.First = Nil;
+        L.Last = Nil;
     } else {
-        cout << "Stack kosong!" << endl;
-        return -1;
+        L.First = P->next;
+        L.First->prev = Nil;
+        P->next = Nil;
     }
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top; i >= 0; i--) {
-        cout << S.info[i] << " ";
-    }
-    cout << endl;
-}
-
-void balikStack(Stack &S) {
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != -1) {
-        push(temp, pop(S));
-    }
-
-    S = temp;
-}
-
-void pushAscending(Stack &S, infotype x) {
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != -1 && S.info[S.top] > x) {
-        push(temp, pop(S));
-    }
-
-    push(S, x);
-
-    while (temp.top != -1) {
-        push(S, pop(temp));
+void deleteLast(List &L, address &P){
+    P = L.Last;
+    if(L.First == L.Last){
+        L.First = Nil;
+        L.Last = Nil;
+    } else {
+        L.Last = P->prev;
+        L.Last->next = Nil;
+        P->prev = Nil;
     }
 }
 
-void getInputStream(Stack &S) {
-    char c;
+void deleteAfter(address Prec, address &P){
+    P = Prec->next;
+    Prec->next = P->next;
 
-    cin >> c;
-
-    while (c != '\n')
-    {
-        push(S, c - '0');
-        c = cin.get();
+    if(P->next != Nil){
+        P->next->prev = Prec;
     }
+
+    P->next = Nil;
+    P->prev = Nil;
 }
 ```
 *main.cpp*
 ```C++
 #include <iostream>
-#include "stack.h"
+#include "Doublylist.h"
+
 using namespace std;
 
-int main() {
-    cout << "Hello world!" << endl;
+int main(){
+    List L;
+    createList(L);
 
-    Stack S;
-    createStack(S);
+    int n = 3;
+    for(int i = 0; i < n; i++){
+        infotype x;
+        cout << "masukkan nomor polisi : ";
+        cin >> x.nopol;
 
-    getInputStream(S);
+        address Q = L.First;
+        bool found = false;
+        while(Q != Nil){
+            if(Q->info.nopol == x.nopol){
+                found = true;
+            }
+            Q = Q->next;
+        }
 
-    printInfo(S);
+        if(found){
+            cout << "nomor polisi sudah terdaftar" << endl;
+            i--;
+            continue;
+        }
 
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+        cout << "masukkan warna kendaraan: ";
+        cin >> x.warna;
+        cout << "masukkan tahun kendaraan: ";
+        cin >> x.thnBuat;
+
+        address P = alokasi(x);
+        insertLast(L, P);
+    }
+    
+    cout << "\nDATA LIST 1\n\n";
+    printInfo(L);
+
+    string cari;
+    cout << "Masukkan Nomor Polisi yang dicari : ";
+    cin >> cari;
+
+    address H = findElm(L, cari);
+
+    if(H != Nil){
+        cout << "\nData ditemukan:\n";
+        cout << "Nomor Polisi : " << H->info.nopol << endl;
+        cout << "Warna        : " << H->info.warna << endl;
+        cout << "Tahun        : " << H->info.thnBuat << endl;
+    } else {
+        cout << "Data tidak ditemukan." << endl;
+    }
+
+    string del;
+    cout << "\nMasukkan nomor polisi yang ingin dihapus: ";
+    cin >> del;
+
+    address X = findElm(L, del);
+
+    if(X != Nil){
+        address P;
+
+        if(X == L.First){
+            deleteFirst(L, P);
+        }
+        else if(X == L.Last){
+            deleteLast(L, P);
+        }
+        else {
+            deleteAfter(X->prev, P);
+        }
+
+        dealokasi(P);
+        cout << "Data berhasil dihapus.\n";
+    }
+    else {
+        cout << "Data tidak ditemukan.\n";
+    }
+
+    cout << "\nDATA LIST SETELAH DELETE:\n\n";
+    printInfo(L);
 
     return 0;
 }
 ```
 #### Output:
-<img width="781" height="199" alt="image" src="https://github.com/user-attachments/assets/c310e061-eee7-474d-bc68-353d6aaa0d28" />
+<img width="728" height="941" alt="image" src="https://github.com/user-attachments/assets/9cbd3496-22aa-4694-8a32-295fa139b5d5" />
 
-getInputStream membaca input pengguna satu karakter setiap kali, kemudian memasukkan setiap karakter angka ke dalam stack. Pembacaan dilakukan terus-menerus menggunakan cin.get() sampai pengguna menekan tombol ENTER. Setiap karakter yang diterima dikonversi menjadi angka dan langsung dimasukkan ke stack dengan push. Di fungsi main, input dimasukkan sebagai rangkaian angka, lalu isi stack ditampilkan sebelum dan sesudah dibalik menggunakan balikStack.
+Kode pada soal ketiga berfungsi untuk menghapus elemen dari Doubly Linked List berdasarkan nomor polisi dengan menentukan jenis penghapusan yang tepat: deleteFirst, deleteLast, atau deleteAfter. Setelah data yang akan dihapus ditemukan melalui findElm, program mengecek posisi node tersebut dalam list. Jika node berada di awal, digunakan deleteFirst; jika di akhir, dipakai deleteLast; dan jika berada di tengah, digunakan deleteAfter dengan memberikan node sebelumnya sebagai parameter. Masing-masing prosedur mengatur ulang pointer next dan prev agar hubungan antar-node tetap valid dan tidak ada pointer yang menggantung. Dengan demikian, kode ini berfungsi menjaga struktur list tetap stabil setelah proses penghapusan, sesuai dengan konsep operasi delete pada Doubly Linked List dalam modul.
 
 #### Full code Screenshot:
-<img width="419" height="485" alt="image" src="https://github.com/user-attachments/assets/3fdf8e30-5b0a-4e1e-ba72-ea67dcccd39a" />
-<img width="309" height="883" alt="image" src="https://github.com/user-attachments/assets/b56f6a8e-6351-432e-9580-9997050d09c5" />
-<img width="389" height="503" alt="image" src="https://github.com/user-attachments/assets/6aaccb67-9de1-49de-a9a0-b33b9685f103" />
+<img width="612" height="874" alt="image" src="https://github.com/user-attachments/assets/e9753c2d-120d-4145-8f0b-35d095029509" />
+<img width="645" height="874" alt="image" src="https://github.com/user-attachments/assets/123d64b0-7f24-4b43-9179-351386cb18b6" />
+<img width="657" height="1004" alt="image" src="https://github.com/user-attachments/assets/b0e0b2e1-1c82-488a-9091-e2423d56742e" />
+<img width="683" height="961" alt="image" src="https://github.com/user-attachments/assets/1f485324-45b1-448d-a9ad-7d4ab52a2ef9" />
+<img width="639" height="856" alt="image" src="https://github.com/user-attachments/assets/a8e76ff6-67a3-46d0-8e07-806483a1bde7" />
 
 
 ## Kesimpulan
-Kesimpulan dari ketiga program di atas adalah bahwa semuanya menerapkan konsep struktur data stack menggunakan array sebagai media penyimpanan. Program pertama menekankan pada operasi dasar seperti push, pop, menampilkan isi stack, serta membalik urutannya. Program kedua memperluas fungsi stack dengan menambahkan pushAscending yang memungkinkan penyisipan data secara terurut. Program ketiga menambahkan kemampuan membaca input karakter berurutan dari pengguna melalui getInputStream. Dari seluruh program tersebut dapat disimpulkan bahwa implementasi stack dengan array memungkinkan pengelolaan data secara terstruktur berdasarkan prinsip LIFO, sekaligus dapat dikembangkan dengan berbagai fitur tambahan. Pemahaman mengenai indeks array, operasi pada variabel top, serta alur masuk-keluarnya data menjadi hal penting agar stack dapat dikelola dengan benar dan efisien.
-
+Kesimpulan dari ketiga program di atas dapat disimpulkan bahwa Doubly Linked List merupakan struktur data yang fleksibel karena setiap node memiliki pointer next dan prev, sehingga proses penambahan, pencarian, dan penghapusan data dapat dilakukan dengan mudah. Pada soal 1, program berhasil membangun ADT lengkap untuk menyimpan data kendaraan dan menampilkan seluruh isi list. Pada soal 2, fungsi findElm digunakan untuk menelusuri list dan menemukan elemen berdasarkan nomor polisi. Pada soal 3, proses delete dapat dilakukan sesuai posisi node dalam list—baik di awal, akhir, maupun tengah—dengan menjaga konsistensi pointer agar struktur list tetap valid. Secara keseluruhan, implementasi ini menunjukkan bagaimana Doubly Linked List bekerja dalam mengelola data secara dinamis dan efisien.
 
 ## Referensi
-[1] GeeksforGeeks. (n.d.). Stack Data Structure. https://www.geeksforgeeks.org/stack-data-structure/
-[2] Tutorialspoint. (n.d.). Data Structures — Stack. https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm
-[3] W3Schools. (n.d.). C++ Input and Streams. https://www.w3schools.com/cpp/cpp_files.asp
-
+[1] Linked List — Doubly Linked List. (2024). GeeksforGeeks. https://www.geeksforgeeks.org/doubly-linked-list/
+[2] Programiz. (2023). Doubly Linked List Data Structure. https://www.programiz.com/dsa/doubly-linked-list
+[3] W3Schools. (2023). C++ Pointers and Structs. https://www.w3schools.com/cpp/cpp_structs.asp
 
