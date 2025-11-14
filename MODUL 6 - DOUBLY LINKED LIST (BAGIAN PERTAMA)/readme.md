@@ -12,182 +12,82 @@ Komponen-komponen dalam Doubly linked list:
 ## Guided 
 
 ### 1. [Doubly Linked List (Bagian Pertama)]
-*stack.h*
 ```C++
-#ifndef STACK_TABLE
-#define STACK_TABLE
-
 #include <iostream>
+#define Nil NULL
 using namespace std;
 
-//ubah kapasitas sesuai kebutuhan
-const int MAX = 10;
+typedef int infotype; // Definisikan tipe data infotype sebagai integer untuk menyimpan informasi elemen
+typedef struct elmlist *address; // Definisikan tipe address sebagai pointer ke struct elmlist
 
-struct stackTable{
-    int data[MAX];
-    int top; // -1 = kosong
-
+struct elmlist {
+    infotype info; // Deklarasikan field info untuk menyimpan data elemen
+    address next;
+    address prev;
 };
 
-bool isEmpty(stackTable s);
-bool isFull(stackTable s);
-void createStack(stackTable &s);
+struct List { 
+    address first; 
+    address last; 
+}; 
 
-void push(stackTable &s, int angka);
-void pop(stackTable &s);
-void update(stackTable &s, int posisi);
-void view(stackTable s);
-void searchData(stackTable s, int data);
+void insertFirst(List &L, address P) { 
+    P->next = L.first; // Set pointer next dari P ke elemen pertama saat ini
+    P->prev = Nil; // Set pointer prev dari P ke Nil karena menjadi elemen pertama
+    if (L.first != Nil) L.first->prev = P; // Jika list tidak kosong, set prev elemen pertama lama ke P
+    else L.last = P; // Jika list kosong, set last juga ke P
+    L.first = P; // Update first list menjadi P
+} 
 
-#endif
-```
-*stack.cpp*
-```C++
-#include "stack.h"
-#include <iostream>
+void insertLast(List &L, address P) { 
+    P->prev = L.last; // Set pointer prev dari P ke elemen terakhir saat ini
+    P->next = Nil; // Set pointer next dari P ke Nil karena menjadi elemen terakhir
+    if (L.last != Nil) L.last->next = P; // Jika list tidak kosong, set next elemen terakhir lama ke P
+    else L.first = P; // Jika list kosong, set first juga ke P
+    L.last = P; // Update last list menjadi P
+} 
 
-using namespace std;
-
-bool isEmpty(stackTable s) {
-    return s.top == -1;
+void insertAfter(List &L, address P, address R) { // Definisikan fungsi insertAfter untuk menyisipkan elemen setelah R
+    P->next = R->next; // Set pointer next dari P ke elemen setelah R
+    P->prev = R; // Set pointer prev dari P ke R
+    if (R->next != Nil) R->next->prev = P; // Jika ada elemen setelah R, set prev elemen tersebut ke P
+    else L.last = P; // Jika R adalah terakhir, update last menjadi P
+    R->next = P; // Set next dari R ke P
 }
 
-bool isFull(stackTable s){
-    return s.top == MAX -1;
+address alokasi(infotype x) { // Definisikan fungsi alokasi untuk membuat elemen baru
+    address P = new elmlist; // Alokasikan memori baru untuk elemen
+    P->info = x; // Set info elemen dengan nilai x
+    P->next = Nil; // Set next elemen ke Nil
+    P->prev = Nil; // Set prev elemen ke Nil
+    return P; 
+} 
+
+void printInfo(List L) { // Definisikan fungsi printInfo untuk mencetak isi list
+    address P = L.first; // Set P ke elemen pertama list
+    while (P != Nil) { // Loop selama P tidak Nil
+        cout << P->info << " "; // Cetak info dari P 
+        P = P->next; // Pindah ke elemen berikutnya
+    } 
+    cout << endl; 
 }
 
-void createStack(stackTable &s) {
-    s.top = -1;
-}
-
-void push(stackTable &s, int angka){
-    if(isFull(s)){
-        cout << "Stack Penuh!" << endl;
-    } else {
-        s.top++;
-        s.data[s.top] = angka;
-        cout << "Data " << angka << " berhasil ditambahkan kedalam stack!" << endl;
-    }
-}
-
-void pop(stackTable &s){
-    if(isEmpty(s)){
-        cout << "Stack kosong!" << endl;
-    } else {
-        int val = s.data[s.top];
-        s.top--;
-        cout << "Data " << val << " Berhasil dihapus dari stack!" << endl;
-    }
-}
-
-void update(stackTable &s, int posisi){
-    if(isEmpty(s)){
-        cout << "Stack kosong!" << endl;
-        return;
-    }
-    if(posisi <= 0){
-        cout << "Posisi tidak valid!" << endl;
-        return;
-    }
-
-    //index = top - (posisi -1)
-    int idx = s.top - (posisi -1);
-    if(idx < 0 || idx > s.top){
-        cout << "Posisi " << posisi << " Tidak valid!" << endl;
-        return;
-    }
-
-    cout << "Update data posisi ke-" << posisi << endl;
-    cout << "Masukkan angka: ";
-    cin >> s.data[idx];
-    cout << "Data berhasil diupdate!" << endl;
-    cout << endl;
-}
-
-void view(stackTable s){
-    if(isEmpty(s)){
-        cout << "Stack Kosong!" << endl;
-    } else {
-        for(int i = s.top; i >= 0; --i){
-            cout << s.data[i] << " ";
-        }
-    }
-    cout << endl;
-}
-
-void searchData(stackTable s, int data){
-    if(isEmpty(s)){
-        cout << "Stack Kosong!" << endl;
-        return;
-    }
-    cout << "Mencari data" << data << "..." << endl;
-    int posisi = 1;
-    bool found = false;
-
-    for(int i = s.top; i >= 0; --i){
-        if(s.data[i] == data){
-            cout << "Data " << data << " ditemukan pada posisi ke-" << posisi << endl;
-            cout << endl;
-            found = true;
-            break;
-        }
-        posisi++;
-    }
-
-    if(!found){
-        cout << "Data " << data << " tidak ditemukan didalam stack!" << endl;
-        cout << endl;
-    }
-}
-```
-*main.cpp*
-```C++
-#include "stack.h"
-#include <iostream>
-
-using namespace std;
-
-int main(){
-    stackTable s;
-    createStack(s);
-
-    push(s, 1);
-    push(s, 2);
-    push(s, 3);
-    push(s, 4);
-    push(s, 5);
-    cout << endl;
-
-    cout << "--- Stack setelah push ---" << endl;
-    view(s);
-    cout << endl;
-
-    pop(s);
-    pop(s);
-    cout << endl;
-
-    cout << "--- Stack setelah pop 2 kali ---" << endl;
-    view(s);
-    cout << endl;
-
-    //Posisi dihitung dari TOP(1-based)
-    update(s, 2);
-    update(s, 1);
-    update(s, 4);
-    cout << endl;
-
-    cout << "--- Stack setelah update ---" << endl;
-    view(s);
-    cout << endl;
-
-    searchData(s, 4);
-    searchData(s, 9);
-
-    return 0;
+int main() { 
+    List L; 
+    L.first = Nil; 
+    L.last = Nil;
+    address P1 = alokasi(1); 
+    insertFirst(L, P1); 
+    address P2 = alokasi(2); 
+    insertLast(L, P2); 
+    address P3 = alokasi(3); 
+    insertAfter(L, P3, P1); 
+    printInfo(L); 
+    return 0; 
 }
 ```
 
-Program ini mengimplementasikan struktur data Stack menggunakan array dengan kapasitas tetap. Stack disimpan dalam struct stackTable yang memiliki array data dan variabel top sebagai penanda elemen teratas. Fungsi dasar seperti push dan pop digunakan untuk menambah dan menghapus elemen sesuai prinsip LIFO, sedangkan isEmpty dan isFull memeriksa kondisi stack. Fungsi update memungkinkan perubahan nilai pada posisi tertentu yang dihitung dari bagian atas stack, view menampilkan seluruh isi stack dari atas ke bawah, dan searchData melakukan pencarian elemen mulai dari top. Dalam fungsi main, beberapa data dimasukkan, dihapus, diperbarui, dan dicari sehingga menunjukkan bagaimana operasi-operasi stack bekerja secara keseluruhan.
+Program ini membuat struktur Doubly Linked List sederhana yang dapat menambah elemen di depan, di belakang, dan di tengah list. Setiap node memiliki dua pointer, yaitu next dan prev, sehingga hubungan antar-elemen bisa diakses dua arah. Fungsi insertFirst, insertLast, dan insertAfter digunakan untuk menempatkan node baru sesuai posisinya dengan mengatur ulang pointer secara benar agar struktur list tetap konsisten. Fungsi alokasi membuat node baru, sementara printInfo menampilkan seluruh isi list dari elemen pertama hingga terakhir. Pada bagian main, elemen 1 ditambahkan ke depan, elemen 2 ke belakang, dan elemen 3 disisipkan setelah elemen pertama, sehingga list akhirnya berisi 1 3 2.
 
 ## Unguided 
 
