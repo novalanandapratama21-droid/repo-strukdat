@@ -7,7 +7,7 @@
 Modul ini membahas dasar-dasar struktur data Stack menggunakan array dalam bahasa C++. Stack merupakan struktur data yang mengikuti prinsip Last In, First Out (LIFO), di mana elemen yang terakhir dimasukkan akan menjadi elemen pertama yang dikeluarkan. Dalam implementasi berbasis array, stack terdiri dari sebuah array penampung data dan variabel top yang menunjuk ke posisi elemen teratas. Modul menjelaskan cara menginisialisasi stack, menambah data menggunakan operasi push, menghapus data menggunakan pop, serta menampilkan isi stack melalui printInfo. Selain operasi dasar, modul juga memperkenalkan pengembangan stack seperti membalik urutan elemen dengan balikStack, memasukkan elemen secara terurut menggunakan pushAscending, dan membaca input karakter berturut-turut dengan getInputStream. Dengan mempelajari materi ini, mahasiswa dapat memahami bagaimana stack bekerja, bagaimana operasi dilakukan pada struktur LIFO, serta bagaimana array dimanfaatkan untuk mengelola data secara terstruktur dan efisien.
 ## Guided 
 
-### 1. [Singly Linked List (Bagian Pertama)]
+### 1. [Stack]
 *stack.h*
 ```C++
 #ifndef STACK_TABLE
