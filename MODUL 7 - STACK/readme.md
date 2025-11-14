@@ -8,9 +8,182 @@ Modul ini membahas dasar-dasar struktur data Stack menggunakan array dalam bahas
 ## Guided 
 
 ### 1. [Singly Linked List (Bagian Pertama)]
+*stack.h*
+```C++
+#ifndef STACK_TABLE
+#define STACK_TABLE
 
+#include <iostream>
+using namespace std;
 
-Kode ini berfungsi untuk mengelola data mahasiswa menggunakan singly linked list dalam C++. Struktur node menyimpan nama, NIM, dan umur, sedangkan linkedlist menyimpan pointer ke elemen pertama. Fungsi-fungsi di list.cpp digunakan untuk membuat list, menambah atau menghapus node, menampilkan isi list, serta menghitung jumlah elemen. Pada main.cpp, beberapa data mahasiswa dibuat dan dimasukkan ke dalam list menggunakan fungsi insertFirst, insertAfter, dan insertLast, lalu ditampilkan dengan printList. Program ini menunjukkan cara penyimpanan data dinamis yang fleksibel dengan konsep linked list.
+//ubah kapasitas sesuai kebutuhan
+const int MAX = 10;
+
+struct stackTable{
+    int data[MAX];
+    int top; // -1 = kosong
+
+};
+
+bool isEmpty(stackTable s);
+bool isFull(stackTable s);
+void createStack(stackTable &s);
+
+void push(stackTable &s, int angka);
+void pop(stackTable &s);
+void update(stackTable &s, int posisi);
+void view(stackTable s);
+void searchData(stackTable s, int data);
+
+#endif
+```
+*stack.cpp*
+```C++
+#include "stack.h"
+#include <iostream>
+
+using namespace std;
+
+bool isEmpty(stackTable s) {
+    return s.top == -1;
+}
+
+bool isFull(stackTable s){
+    return s.top == MAX -1;
+}
+
+void createStack(stackTable &s) {
+    s.top = -1;
+}
+
+void push(stackTable &s, int angka){
+    if(isFull(s)){
+        cout << "Stack Penuh!" << endl;
+    } else {
+        s.top++;
+        s.data[s.top] = angka;
+        cout << "Data " << angka << " berhasil ditambahkan kedalam stack!" << endl;
+    }
+}
+
+void pop(stackTable &s){
+    if(isEmpty(s)){
+        cout << "Stack kosong!" << endl;
+    } else {
+        int val = s.data[s.top];
+        s.top--;
+        cout << "Data " << val << " Berhasil dihapus dari stack!" << endl;
+    }
+}
+
+void update(stackTable &s, int posisi){
+    if(isEmpty(s)){
+        cout << "Stack kosong!" << endl;
+        return;
+    }
+    if(posisi <= 0){
+        cout << "Posisi tidak valid!" << endl;
+        return;
+    }
+
+    //index = top - (posisi -1)
+    int idx = s.top - (posisi -1);
+    if(idx < 0 || idx > s.top){
+        cout << "Posisi " << posisi << " Tidak valid!" << endl;
+        return;
+    }
+
+    cout << "Update data posisi ke-" << posisi << endl;
+    cout << "Masukkan angka: ";
+    cin >> s.data[idx];
+    cout << "Data berhasil diupdate!" << endl;
+    cout << endl;
+}
+
+void view(stackTable s){
+    if(isEmpty(s)){
+        cout << "Stack Kosong!" << endl;
+    } else {
+        for(int i = s.top; i >= 0; --i){
+            cout << s.data[i] << " ";
+        }
+    }
+    cout << endl;
+}
+
+void searchData(stackTable s, int data){
+    if(isEmpty(s)){
+        cout << "Stack Kosong!" << endl;
+        return;
+    }
+    cout << "Mencari data" << data << "..." << endl;
+    int posisi = 1;
+    bool found = false;
+
+    for(int i = s.top; i >= 0; --i){
+        if(s.data[i] == data){
+            cout << "Data " << data << " ditemukan pada posisi ke-" << posisi << endl;
+            cout << endl;
+            found = true;
+            break;
+        }
+        posisi++;
+    }
+
+    if(!found){
+        cout << "Data " << data << " tidak ditemukan didalam stack!" << endl;
+        cout << endl;
+    }
+}
+```
+*main.cpp*
+```C++
+#include "stack.h"
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    stackTable s;
+    createStack(s);
+
+    push(s, 1);
+    push(s, 2);
+    push(s, 3);
+    push(s, 4);
+    push(s, 5);
+    cout << endl;
+
+    cout << "--- Stack setelah push ---" << endl;
+    view(s);
+    cout << endl;
+
+    pop(s);
+    pop(s);
+    cout << endl;
+
+    cout << "--- Stack setelah pop 2 kali ---" << endl;
+    view(s);
+    cout << endl;
+
+    //Posisi dihitung dari TOP(1-based)
+    update(s, 2);
+    update(s, 1);
+    update(s, 4);
+    cout << endl;
+
+    cout << "--- Stack setelah update ---" << endl;
+    view(s);
+    cout << endl;
+
+    searchData(s, 4);
+    searchData(s, 9);
+
+    return 0;
+}
+```
+
+Program ini mengimplementasikan struktur data Stack menggunakan array dengan kapasitas tetap. Stack disimpan dalam struct stackTable yang memiliki array data dan variabel top sebagai penanda elemen teratas. Fungsi dasar seperti push dan pop digunakan untuk menambah dan menghapus elemen sesuai prinsip LIFO, sedangkan isEmpty dan isFull memeriksa kondisi stack. Fungsi update memungkinkan perubahan nilai pada posisi tertentu yang dihitung dari bagian atas stack, view menampilkan seluruh isi stack dari atas ke bawah, dan searchData melakukan pencarian elemen mulai dari top. Dalam fungsi main, beberapa data dimasukkan, dihapus, diperbarui, dan dicari sehingga menunjukkan bagaimana operasi-operasi stack bekerja secara keseluruhan.
 
 ## Unguided 
 
