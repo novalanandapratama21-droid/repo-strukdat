@@ -1,5 +1,4 @@
-
-  # <h1 align="center">Laporan Praktikum Modul </h1>
+# <h1 align="center">Laporan Praktikum Modul Queue </h1>
 <p align="center">Noval Ananda Pratama</p>
 
 ## Dasar Teori
@@ -28,100 +27,120 @@ Program ini mengimplementasikan struktur data Stack menggunakan array dengan kap
 ### 1. [Soal]
 *queue.h*
 ```C++
-#ifndef STACK_H
-#define STACK_H
+#ifndef QUEUE_H
+#define QUEUE_H
+
+#include <iostream>
+using namespace std;
+
+#define MAX 5
 
 typedef int infotype;
 
-typedef struct {
-    infotype info[20];
-    int top;
-} Stack;
+struct Queue {
+    infotype info[MAX];
+    int head;
+    int tail;
+};
 
-void createStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
+void createQueue(Queue &Q);
+bool isEmptyQueue(Queue Q);
+bool isFullQueue(Queue Q);
+void enqueue(Queue &Q, infotype x);
+infotype dequeue(Queue &Q);
+void printInfo(Queue Q);
 
 #endif
 ```
 *queue.cpp*
 ```C++
-#include <iostream>
-#include "stack.h"
-using namespace std;
+#include "queue.h"
 
-void createStack(Stack &S) {
-    S.top = -1;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < 19) {
-        S.top++;
-        S.info[S.top] = x;
-    } else {
-        cout << "Stack penuh!" << endl;
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (!isFullQueue(Q)) {
+        if (isEmptyQueue(Q)) {
+            Q.head = 0;
+            Q.tail = 0;
+        } else {
+            Q.tail++;
+        }
+        Q.info[Q.tail] = x;
     }
 }
 
-infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        int x = S.info[S.top];
-        S.top--;
+infotype dequeue(Queue &Q) {
+    infotype x;
+    if (!isEmptyQueue(Q)) {
+        x = Q.info[Q.head];
+
+        for (int i = Q.head; i < Q.tail; i++) {
+            Q.info[i] = Q.info[i + 1];
+        }
+        Q.tail--;
+
+        if (Q.tail < Q.head) {
+            Q.head = -1;
+            Q.tail = -1;
+        }
         return x;
-    } else {
-        cout << "Stack kosong!" << endl;
-        return -1;
     }
+    return -1;
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top; i >= 0; i--) {
-        cout << S.info[i] << " ";
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << "\t | ";
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
     }
     cout << endl;
-}
-
-void balikStack(Stack &S) {
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != -1) {
-        push(temp, pop(S));
-    }
-
-    S = temp;
 }
 ```
 *main.cpp*
 ```C++
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
 int main() {
     cout << "Hello world!" << endl;
 
-    Stack S;
-    createStack(S);
+    Queue Q;
+    createQueue(Q);
 
-    push(S, 3);
-    push(S, 4);
-    push(S, 8);
-    pop(S);
-    push(S, 2);
-    push(S, 3);
-    pop(S);
-    push(S, 9);
+    cout << "----------------------" << endl;
+    cout << "H - T  | Queue Info" << endl;
+    cout << "----------------------" << endl;
 
-    printInfo(S);
+    printInfo(Q);
 
-    cout << "balik stack" << endl;
-    balikStack(S);
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
 
-    printInfo(S);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+
+    enqueue(Q, 4); printInfo(Q);
+
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
 
     return 0;
 }
@@ -132,9 +151,9 @@ int main() {
 Program Queue pada soal nomor 1 mengimplementasikan ADT Queue menggunakan array dengan kapasitas tetap sebanyak lima elemen. Proses createQueue digunakan untuk menginisialisasi queue dalam keadaan kosong dengan nilai head dan tail bernilai -1. Operasi enqueue berfungsi untuk menambahkan data ke dalam queue dengan memajukan posisi tail, sedangkan operasi dequeue berfungsi untuk menghapus data paling depan dengan cara menggeser elemen ke kiri agar posisi head tetap berada di indeks 0. Fungsi printInfo digunakan untuk menampilkan nilai head, tail, serta isi queue sehingga perubahan kondisi queue dapat diamati setelah setiap operasi dilakukan.
 
 #### Full code Screenshot:
-<img width="404" height="439" alt="image" src="https://github.com/user-attachments/assets/49b94a02-1d5c-4ffa-a559-b9de0f33df7c" />
-<img width="469" height="973" alt="image" src="https://github.com/user-attachments/assets/aa46b6dd-997c-4418-93a5-55a8e09a223a" />
-<img width="438" height="638" alt="image" src="https://github.com/user-attachments/assets/3ea58a78-cee0-4f73-870c-0ef48920f927" />
+<img width="545" height="658" alt="image" src="https://github.com/user-attachments/assets/53c66486-a612-4287-ac5f-0a7cb54aaad3" />
+<img width="537" height="994" alt="image" src="https://github.com/user-attachments/assets/9d6ff5d3-6d3b-419d-bf46-f9cae91da5c0" />
+<img width="514" height="664" alt="image" src="https://github.com/user-attachments/assets/8a3f4212-2c48-4334-9589-4fde39f711b8" />
 
 ### 2. [Soal]
 *stack.h*
