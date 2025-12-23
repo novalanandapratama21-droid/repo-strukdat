@@ -6,8 +6,8 @@
 Queue adalah struktur data linear yang bekerja dengan prinsip FIFO (First In First Out), yaitu elemen yang pertama masuk ke dalam queue akan menjadi elemen pertama yang keluar. Queue memiliki dua penunjuk utama, yaitu head sebagai posisi penghapusan elemen dan tail sebagai posisi penambahan elemen. Operasi utama dalam queue terdiri dari enqueue, yaitu proses menambahkan elemen pada bagian tail, dan dequeue, yaitu proses menghapus elemen pada bagian head. Pada implementasi menggunakan array, salah satu mekanisme yang digunakan adalah Queue Alternatif 1, di mana posisi head tetap (diam) selama queue tidak kosong, sedangkan tail bergerak mengikuti penambahan dan penghapusan elemen, dengan cara menggeser data saat terjadi penghapusan.
 ## Guided 
 
-### 1. [Stack]
-*stack.h*
+### 1. [Queue]
+*queue.h*
 ```C++
 
 ```
@@ -156,129 +156,130 @@ Program Queue pada soal nomor 1 mengimplementasikan ADT Queue menggunakan array 
 <img width="514" height="664" alt="image" src="https://github.com/user-attachments/assets/8a3f4212-2c48-4334-9589-4fde39f711b8" />
 
 ### 2. [Soal]
-*stack.h*
+*queue.h*
 ```C++
-#ifndef STACK_H
-#define STACK_H
+    #ifndef QUEUE_H
+    #define QUEUE_H
 
-typedef int infotype;
+    #include <iostream>
+    using namespace std;
 
-typedef struct {
-    infotype info[20];
-    int top;
-} Stack;
+    #define MAX 5
 
-void createStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
-void pushAscending(Stack &S, infotype x);
+    typedef int infotype;
 
-#endif
+    struct Queue {
+        infotype info[MAX];
+        int head;
+        int tail;
+    };
+
+    void createQueue(Queue &Q);
+    bool isEmptyQueue(Queue Q);
+    bool isFullQueue(Queue Q);
+    void enqueue(Queue &Q, infotype x);
+    infotype dequeue(Queue &Q);
+    void printInfo(Queue Q);
+
+    #endif
 ```
-*stack.cpp*
+*queue.cpp*
 ```C++
-#include <iostream>
-#include "stack.h"
-using namespace std;
+#include "queue.h"
 
-void createStack(Stack &S) {
-    S.top = -1;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < 19) {
-        S.top++;
-        S.info[S.top] = x;
-    } else {
-        cout << "Stack penuh!" << endl;
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (!isFullQueue(Q)) {
+        if (isEmptyQueue(Q)) {
+            Q.head = 0;
+            Q.tail = 0;
+        } else {
+            Q.tail++;
+        }
+        Q.info[Q.tail] = x;
     }
 }
 
-infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        int x = S.info[S.top];
-        S.top--;
-        return x;
-    } else {
-        cout << "Stack kosong!" << endl;
-        return -1;
+infotype dequeue(Queue &Q) {
+    infotype x = -1;
+    if (!isEmptyQueue(Q)) {
+        x = Q.info[Q.head];
+        Q.head++;
+
+        if (Q.head > Q.tail) {
+            Q.head = -1;
+            Q.tail = -1;
+        }
     }
+    return x;
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top; i >= 0; i--) {
-        cout << S.info[i] << " ";
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " | ";
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
     }
     cout << endl;
 }
-
-void balikStack(Stack &S) {
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != -1) {
-        push(temp, pop(S));
-    }
-
-    S = temp;
-}
-
-void pushAscending(Stack &S, infotype x) {
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != -1 && S.info[S.top] > x) {
-        push(temp, pop(S));
-    }
-
-    push(S, x);
-
-    while (temp.top != -1) {
-        push(S, pop(temp));
-    }
-}
-
 ```
 *main.cpp*
 ```C++
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
 int main() {
     cout << "Hello world!" << endl;
 
-    Stack S;
-    createStack(S);
+    Queue Q;
+    createQueue(Q);
 
-    pushAscending(S, 3);
-    pushAscending(S, 4);
-    pushAscending(S, 8);
-    pushAscending(S, 2);
-    pushAscending(S, 3);
-    pushAscending(S, 9);
+    cout << "----------------------" << endl;
+    cout << "H - T  | Queue Info" << endl;
+    cout << "----------------------" << endl;
 
-    printInfo(S);
+    printInfo(Q);
 
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+
+    enqueue(Q, 4); printInfo(Q);
+
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
 
     return 0;
 }
 ```
 #### Output:
-<img width="787" height="183" alt="image" src="https://github.com/user-attachments/assets/7340f79e-c980-47ef-8d51-683a56ba4121" />
+<img width="757" height="337" alt="image" src="https://github.com/user-attachments/assets/b32203d7-8f67-45c3-8af7-857dcec8fca8" />
 
-Fungsi pushAscending memasukkan data ke stack sambil menjaga agar elemen-elemen di dalamnya tetap terurut naik. Cara kerjanya adalah memindahkan sementara elemen yang lebih besar, memasukkan nilai baru, lalu mengembalikan elemen yang dipindahkan. Di main, beberapa nilai dimasukkan dengan pushAscending, sehingga stack langsung tersusun ascending. Setelah ditampilkan, stack dibalik dengan balikStack dan hasilnya ditampilkan kembali.
+ADT Queue diimplementasikan menggunakan array dengan mekanisme Queue Alternatif 2, yaitu head bergerak dan tail bergerak. Pada mekanisme ini, proses enqueue dilakukan dengan menambahkan elemen di posisi tail dan memajukan nilai tail, sedangkan proses dequeue dilakukan dengan mengambil elemen pada posisi head lalu memajukan nilai head tanpa melakukan pergeseran data. Pendekatan ini lebih efisien dibanding Alternatif 1 karena tidak membutuhkan proses penggeseran elemen, namun memiliki kelemahan berupa kemungkinan terjadinya queue penuh semu, yaitu kondisi ketika array terlihat penuh meskipun masih terdapat ruang kosong di bagian awal array.
 
 #### Full code Screenshot:
-<img width="429" height="450" alt="image" src="https://github.com/user-attachments/assets/d0e58b3e-2a1e-4495-b214-a1c400759466" />
-<img width="368" height="890" alt="image" src="https://github.com/user-attachments/assets/5d090075-39fe-44f9-b741-15e5888487ce" />
-<img width="436" height="576" alt="image" src="https://github.com/user-attachments/assets/eacb0216-15b2-4b42-99dd-cb59b21e637d" />
+<img width="508" height="573" alt="image" src="https://github.com/user-attachments/assets/38f674a1-b3bc-4754-83da-bf222b7bed7c" />
+<img width="492" height="927" alt="image" src="https://github.com/user-attachments/assets/c8278dc2-36ea-4a15-9102-5c95db894d0d" />
+<img width="544" height="669" alt="image" src="https://github.com/user-attachments/assets/e8d16345-4a35-4d24-a127-198359027bc1" />
 
 ### 3. [Soal]
 *stack.h*
@@ -405,7 +406,7 @@ int main() {
 #### Output:
 <img width="781" height="199" alt="image" src="https://github.com/user-attachments/assets/c310e061-eee7-474d-bc68-353d6aaa0d28" />
 
-getInputStream membaca input pengguna satu karakter setiap kali, kemudian memasukkan setiap karakter angka ke dalam stack. Pembacaan dilakukan terus-menerus menggunakan cin.get() sampai pengguna menekan tombol ENTER. Setiap karakter yang diterima dikonversi menjadi angka dan langsung dimasukkan ke stack dengan push. Di fungsi main, input dimasukkan sebagai rangkaian angka, lalu isi stack ditampilkan sebelum dan sesudah dibalik menggunakan balikStack.
+Pada soal nomor 3, ADT Queue diimplementasikan menggunakan mekanisme Queue Alternatif 3, di mana head dan tail bergerak secara berputar (circular) mengikuti indeks array. Proses enqueue dan dequeue dilakukan dengan memanfaatkan operasi modulo sehingga head dan tail dapat kembali ke indeks awal ketika mencapai batas akhir array. Mekanisme ini menghilangkan kebutuhan pergeseran data serta mencegah terjadinya kondisi penuh semu seperti pada Alternatif 2. Oleh karena itu, Queue Alternatif 3 merupakan implementasi yang paling efisien karena seluruh ruang array dapat dimanfaatkan secara optimal.
 
 #### Full code Screenshot:
 <img width="419" height="485" alt="image" src="https://github.com/user-attachments/assets/3fdf8e30-5b0a-4e1e-ba72-ea67dcccd39a" />
