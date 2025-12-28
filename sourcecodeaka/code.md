@@ -1,4 +1,4 @@
-
+```
 import time
 import random
 import matplotlib.pyplot as plt
@@ -68,3 +68,4 @@ while True:
 
     except ValueError:
         print("Input tidak valid!")
+```
